@@ -168,13 +168,14 @@ void CalVector::operator*=(const float d)
 
 void CalVector::operator*=(const CalQuaternion& q)
 {
-  CalQuaternion temp(-q.x, -q.y, -q.z, q.w);
-  temp *= *this;
-  temp *= q;
+  float qx = q.w * x           - q.y * z + q.z * y;
+  float qy = q.w * y + q.x * z           - q.z * x;
+  float qz = q.w * z - q.x * y + q.y * x;
+  float qw =         + q.x * x + q.y * y + q.z * z;
 
-  x = temp.x;
-  y = temp.y;
-  z = temp.z;
+  x = qw * q.x + qx * q.w + qy * q.z - qz * q.y;
+  y = qw * q.y - qx * q.z + qy * q.w + qz * q.x;
+  z = qw * q.z + qx * q.y - qy * q.x + qz * q.w;
 }
 
  /*****************************************************************************/
