@@ -17,6 +17,7 @@
 //****************************************************************************//
 
 #include "coresubmesh.h"
+#define ASSERT(x)
 
  /*****************************************************************************/
 /** Constructs the core submesh instance.
@@ -288,19 +289,12 @@ void CalCoreSubmesh::setCoreMaterialThreadId(int coreMaterialThreadId)
   *
   * @param faceId  The ID of the face.
   * @param face The face that should be set.
-  *
-  * @return One of the following values:
-  *         \li \b true if successful
-  *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreSubmesh::setFace(int faceId, const Face& face)
+void CalCoreSubmesh::setFace(int faceId, const Face& face)
 {
-  if((faceId < 0) || (faceId >= (int)m_vectorFace.size())) return false;
-
+  ASSERT((faceId > 0) || (faceId < (int)m_vectorFace.size()));
   m_vectorFace[faceId] = face;
-
-  return true;
 }
 
  /*****************************************************************************/
@@ -324,19 +318,12 @@ void CalCoreSubmesh::setLodCount(int lodCount)
   *
   * @param vertexId  The ID of the vertex.
   * @param physicalProperty The physical property that should be set.
-  *
-  * @return One of the following values:
-  *         \li \b true if successful
-  *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreSubmesh::setPhysicalProperty(int vertexId, const PhysicalProperty& physicalProperty)
+void CalCoreSubmesh::setPhysicalProperty(int vertexId, const PhysicalProperty& physicalProperty)
 {
-  if((vertexId < 0) || (vertexId >= (int)m_vectorPhysicalProperty.size())) return false;
-
+  ASSERT((vertexId > 0) || (vertexId < (int)m_vectorPhysicalProperty.size()));
   m_vectorPhysicalProperty[vertexId] = physicalProperty;
-
-  return true;
 }
 
  /*****************************************************************************/
@@ -346,19 +333,12 @@ bool CalCoreSubmesh::setPhysicalProperty(int vertexId, const PhysicalProperty& p
   *
   * @param springId  The ID of the spring.
   * @param spring The spring that should be set.
-  *
-  * @return One of the following values:
-  *         \li \b true if successful
-  *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreSubmesh::setSpring(int springId, const Spring& spring)
+void CalCoreSubmesh::setSpring(int springId, const Spring& spring)
 {
-  if((springId < 0) || (springId >= (int)m_vectorSpring.size())) return false;
-
+  ASSERT((springId > 0) || (springId < (int)m_vectorSpring.size()));
   m_vectorSpring[springId] = spring;
-
-  return true;
 }
 
  /*****************************************************************************/
@@ -370,20 +350,13 @@ bool CalCoreSubmesh::setSpring(int springId, const Spring& spring)
   * @param vertexId  The ID of the vertex.
   * @param textureCoordinateId  The ID of the texture coordinate.
   * @param textureCoordinate The texture coordinate that should be set.
-  *
-  * @return One of the following values:
-  *         \li \b true if successful
-  *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreSubmesh::setTextureCoordinate(int vertexId, int textureCoordinateId, const TextureCoordinate& textureCoordinate)
+void CalCoreSubmesh::setTextureCoordinate(int vertexId, int textureCoordinateId, const TextureCoordinate& textureCoordinate)
 {
-  if((textureCoordinateId < 0) || (textureCoordinateId >= (int)m_vectorvectorTextureCoordinate.size())) return false;
-  if((vertexId < 0) || (vertexId >= (int)m_vectorvectorTextureCoordinate[textureCoordinateId].size())) return false;
-
+  ASSERT((textureCoordinateId > 0) || (textureCoordinateId < (int)m_vectorvectorTextureCoordinate.size()));
+  ASSERT((vertexId > 0) || (vertexId < (int)m_vectorvectorTextureCoordinate[textureCoordinateId].size()));
   m_vectorvectorTextureCoordinate[textureCoordinateId][vertexId] = textureCoordinate;
-
-  return true;
 }
 
  /*****************************************************************************/
@@ -393,19 +366,12 @@ bool CalCoreSubmesh::setTextureCoordinate(int vertexId, int textureCoordinateId,
   *
   * @param vertexId  The ID of the vertex.
   * @param vertex The vertex that should be set.
-  *
-  * @return One of the following values:
-  *         \li \b true if successful
-  *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreSubmesh::setVertex(int vertexId, const Vertex& vertex)
+void CalCoreSubmesh::setVertex(int vertexId, const Vertex& vertex)
 {
-  if((vertexId < 0) || (vertexId >= (int)m_vectorVertex.size())) return false;
-
+  ASSERT(vertexId > 0 || (vertexId < (int)m_vectorVertex.size()));
   m_vectorVertex[vertexId] = vertex;
-
-  return true;
 }
 
 //****************************************************************************//

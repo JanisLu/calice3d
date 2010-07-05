@@ -441,11 +441,11 @@ void CalMixer::updateSkeleton()
     pCoreAnimation = (*iteratorAnimationAction)->getCoreAnimation();
 
     // get the list of core tracks of above core animation
-    std::list<CalCoreTrack *>& listCoreTrack = pCoreAnimation->getListCoreTrack();
+    std::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
 
     // loop through all core tracks of the core animation
-    std::list<CalCoreTrack *>::iterator iteratorCoreTrack;
-    for(iteratorCoreTrack = listCoreTrack.begin(); iteratorCoreTrack != listCoreTrack.end(); ++iteratorCoreTrack)
+    std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+    for(iteratorCoreTrack = vectorCoreTrack.begin(); iteratorCoreTrack != vectorCoreTrack.end(); ++iteratorCoreTrack)
     {
       // get the appropriate bone of the track
       CalBone *pBone;
@@ -491,11 +491,11 @@ void CalMixer::updateSkeleton()
     }
 
     // get the list of core tracks of above core animation
-    std::list<CalCoreTrack *>& listCoreTrack = pCoreAnimation->getListCoreTrack();
+    std::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
 
     // loop through all core tracks of the core animation
-    std::list<CalCoreTrack *>::iterator iteratorCoreTrack;
-    for(iteratorCoreTrack = listCoreTrack.begin(); iteratorCoreTrack != listCoreTrack.end(); ++iteratorCoreTrack)
+    std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+    for(iteratorCoreTrack = vectorCoreTrack.begin(); iteratorCoreTrack != vectorCoreTrack.end(); ++iteratorCoreTrack)
     {
       // get the appropriate bone of the track
       CalBone *pBone;

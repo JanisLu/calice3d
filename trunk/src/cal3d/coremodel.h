@@ -36,6 +36,7 @@ class CalCoreMaterial;
 
 class CAL3D_API CalCoreModel
 {
+  friend class CalLoader;
 // member variables
 protected:
   std::string m_strName;

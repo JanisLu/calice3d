@@ -41,7 +41,7 @@ CalCoreBone::CalCoreBone()
 
 CalCoreBone::~CalCoreBone()
 {
-  assert(m_listChildId.empty());
+  assert(m_arrayChildId.empty());
 }
 
  /*****************************************************************************/
@@ -60,7 +60,7 @@ CalCoreBone::~CalCoreBone()
 
 bool CalCoreBone::addChildId(int childId)
 {
-  m_listChildId.push_back(childId);
+  m_arrayChildId.push_back(childId);
 
   return true;
 }
@@ -96,8 +96,8 @@ void CalCoreBone::calculateState()
   }
 
   // calculate all child bones
-  std::list<int>::iterator iteratorChildId;
-  for(iteratorChildId = m_listChildId.begin(); iteratorChildId != m_listChildId.end(); ++iteratorChildId)
+  std::vector<int>::iterator iteratorChildId;
+  for(iteratorChildId = m_arrayChildId.begin(); iteratorChildId != m_arrayChildId.end(); ++iteratorChildId)
   {
     m_pCoreSkeleton->getCoreBone(*iteratorChildId)->calculateState();
   }
@@ -133,24 +133,24 @@ bool CalCoreBone::create(const std::string& strName)
 void CalCoreBone::destroy()
 {
   // clear children id list
-  m_listChildId.clear();
+  m_arrayChildId.clear();
 
   m_parentId = -1;
   m_strName.erase();
 }
 
  /*****************************************************************************/
-/** Returns the child ID list.
+/** Returns the child ID array.
   *
-  * This function returns the list that contains all child IDs of the core bone
+  * This function returns the arrays that contains all child IDs of the core bone
   * instance.
   *
   * @return A reference to the child ID list.
   *****************************************************************************/
 
-std::list<int>& CalCoreBone::getListChildId()
+std::vector<int>& CalCoreBone::getChildIds()
 {
-  return m_listChildId;
+  return m_arrayChildId;
 }
 
  /*****************************************************************************/

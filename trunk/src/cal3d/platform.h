@@ -42,7 +42,8 @@
 // Endianness setup                                                           //
 //****************************************************************************//
 
-#if defined(__i386__) || \
+#if defined(__i386__) || defined(_M_IX86) ||\
+	defined(__x86_64__) || defined(_M_X64) ||\
     defined(__alpha__) || \
     (defined(__mips__) && defined(MIPSEL)) || \
     defined(__MIPSEL__) || \

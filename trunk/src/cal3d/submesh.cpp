@@ -79,8 +79,6 @@ bool CalSubmesh::create(CalCoreSubmesh *pCoreSubmesh)
   {
     m_vectorVertex.reserve(m_pCoreSubmesh->getVertexCount());
     m_vectorVertex.resize(m_pCoreSubmesh->getVertexCount());
-    m_vectorNormal.reserve(m_pCoreSubmesh->getVertexCount());
-    m_vectorNormal.resize(m_pCoreSubmesh->getVertexCount());
     m_vectorPhysicalProperty.reserve(m_pCoreSubmesh->getVertexCount());
     m_vectorPhysicalProperty.resize(m_pCoreSubmesh->getVertexCount());
 
@@ -92,12 +90,12 @@ bool CalSubmesh::create(CalCoreSubmesh *pCoreSubmesh)
     for(vertexId = 0; vertexId < m_pCoreSubmesh->getVertexCount(); vertexId++)
     {
       // copy the vertex data
-      m_vectorVertex[vertexId] = vectorVertex[vertexId].position;
+      m_vectorVertex[vertexId].position = vectorVertex[vertexId].position;
       m_vectorPhysicalProperty[vertexId].position = vectorVertex[vertexId].position;
       m_vectorPhysicalProperty[vertexId].positionOld = vectorVertex[vertexId].position;
 
       // copy the normal data
-      m_vectorNormal[vertexId] = vectorVertex[vertexId].normal;
+      m_vectorVertex[vertexId].normal = vectorVertex[vertexId].normal;
     }
 
     m_bInternalData = true;
@@ -186,19 +184,6 @@ int CalSubmesh::getFaces(int *pFaceBuffer)
   return m_faceCount;
 }
 
- /*****************************************************************************/
-/** Returns the normal vector.
-  *
-  * This function returns the vector that contains all normals of the submesh
-  * instance.
-  *
-  * @return A reference to the normal vector.
-  *****************************************************************************/
-
-std::vector<CalVector>& CalSubmesh::getVectorNormal()
-{
-  return m_vectorNormal;
-}
 
  /*****************************************************************************/
 /** Returns the physical property vector.
@@ -223,7 +208,7 @@ std::vector<CalSubmesh::PhysicalProperty>& CalSubmesh::getVectorPhysicalProperty
   * @return A reference to the vertex vector.
   *****************************************************************************/
 
-std::vector<CalVector>& CalSubmesh::getVectorVertex()
+std::vector<CalSubmesh::Vertex>& CalSubmesh::getVectorVertex()
 {
   return m_vectorVertex;
 }

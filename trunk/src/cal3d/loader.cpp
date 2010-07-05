@@ -84,7 +84,7 @@ CalCoreAnimation *CalLoader::loadCoreAnimation(const std::string& strFilename)
 
   // check if the version is compatible with the library
   int version;
-  if(!CalPlatform::readInteger(file, version) || (version < Cal::EARLIEST_COMPATIBLE_FILE_VERSION) || (version > Cal::CURRENT_FILE_VERSION))
+  if(!CalPlatform::readInteger(file, version) || (version < Cal::EARLIEST_COMPATIBLE_FILE_VERSION) || (version > Cal::ANIMATION_FILE_VERSION))
   {
     CalError::setLastError(CalError::INCOMPATIBLE_FILE_VERSION, __FILE__, __LINE__, strFilename);
     return 0;
@@ -135,6 +135,10 @@ CalCoreAnimation *CalLoader::loadCoreAnimation(const std::string& strFilename)
     CalError::setLastError(CalError::INVALID_FILE_FORMAT, __FILE__, __LINE__, strFilename);
     return 0;
   }
+
+  // memory allocation optimisation: reserve enough space for all the tracks
+  pCoreAnimation->m_arrayCoreTrack.reserve(trackCount);
+
 
   // load all core bones
   int trackId;
@@ -257,6 +261,9 @@ CalCoreBone *CalLoader::loadCoreBones(std::ifstream& file, const std::string& st
     return 0;
   }
 
+  // memory allocation optimisation
+  pCoreBone->m_arrayChildId.reserve(childCount);
+
   // load all children ids
   for(; childCount > 0; childCount--)
   {
@@ -285,7 +292,7 @@ CalCoreBone *CalLoader::loadCoreBones(std::ifstream& file, const std::string& st
   *
   * @return One of the following values:
   *         \li a pointer to the core keyframe
-  *         \li \b 0 if an error happend
+  *         \li \b 0 if an error happened
   *****************************************************************************/
 
 CalCoreKeyframe *CalLoader::loadCoreKeyframe(std::ifstream& file, const std::string& strFilename)
@@ -543,6 +550,8 @@ CalCoreMesh *CalLoader::loadCoreMesh(const std::string& strFilename)
     return 0;
   }
 
+  pCoreMesh->m_vectorCoreSubmesh.reserve(submeshCount);
+
   // load all core submeshes
   int submeshId;
   for(submeshId = 0; submeshId < submeshCount; submeshId++)
@@ -601,7 +610,7 @@ CalCoreSkeleton *CalLoader::loadCoreSkeleton(const std::string& strFilename)
 
   // check if the version is compatible with the library
   int version;
-  if(!CalPlatform::readInteger(file, version) || (version < Cal::EARLIEST_COMPATIBLE_FILE_VERSION) || (version > Cal::CURRENT_FILE_VERSION))
+  if(!CalPlatform::readInteger(file, version) || (version < Cal::EARLIEST_COMPATIBLE_FILE_VERSION) || (version > Cal::SKELETON_FILE_VERSION))
   {
     CalError::setLastError(CalError::INCOMPATIBLE_FILE_VERSION, __FILE__, __LINE__, strFilename);
     return 0;
@@ -630,6 +639,9 @@ CalCoreSkeleton *CalLoader::loadCoreSkeleton(const std::string& strFilename)
     delete pCoreSkeleton;
     return 0;
   }
+
+  pCoreSkeleton->m_vectorCoreBone.reserve(boneCount);
+  pCoreSkeleton->m_vectorRootCoreBoneId.reserve(boneCount);
 
   // load all core bones
   int boneId;

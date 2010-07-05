@@ -60,7 +60,7 @@ CalSpringSystem::~CalSpringSystem()
 void CalSpringSystem::calculateForces(CalSubmesh *pSubmesh, float deltaTime)
 {
   // get the vertex vector of the submesh
-  std::vector<CalVector>& vectorVertex = pSubmesh->getVectorVertex();
+	std::vector<CalSubmesh::Vertex>& vectorVertex = pSubmesh->getVectorVertex();
 
   // get the vertex vector of the submesh
   std::vector<CalSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getVectorPhysicalProperty();
@@ -101,7 +101,7 @@ void CalSpringSystem::calculateForces(CalSubmesh *pSubmesh, float deltaTime)
 void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
 {
   // get the vertex vector of the submesh
-  std::vector<CalVector>& vectorVertex = pSubmesh->getVectorVertex();
+  std::vector<CalSubmesh::Vertex>& vectorVertex = pSubmesh->getVectorVertex();
 
   // get the physical property vector of the submesh
   std::vector<CalSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getVectorPhysicalProperty();
@@ -114,7 +114,7 @@ void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
   for(vertexId = 0; vertexId < (int)vectorVertex.size(); vertexId++)
   {
     // get the vertex
-    CalVector& vertex = vectorVertex[vertexId];
+	CalSubmesh::Vertex& vertex = vectorVertex[vertexId];
 
     // get the physical property of the vertex
     CalSubmesh::PhysicalProperty& physicalProperty = vectorPhysicalProperty[vertexId];
@@ -134,14 +134,14 @@ void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
     }
     else
     {
-      physicalProperty.position = vectorVertex[vertexId];
+      physicalProperty.position = vectorVertex[vertexId].position;
     }
 
     // make the current position the old one
     physicalProperty.positionOld = position;
 
     // set the new position of the vertex
-    vertex = physicalProperty.position;
+    vertex.position = physicalProperty.position;
 
     // clear the accumulated force on the vertex
     physicalProperty.force.clear();
@@ -164,7 +164,7 @@ void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
 
       // compute the difference between the two spring vertices
       CalVector distance;
-      distance = vectorVertex[spring.vertexId[1]] - vectorVertex[spring.vertexId[0]];
+      distance = vectorVertex[spring.vertexId[1]].position - vectorVertex[spring.vertexId[0]].position;
 
       // get the current length of the spring
       float length;
@@ -192,11 +192,11 @@ void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
           factor[1] = 0.0f;
         }
 
-        vectorVertex[spring.vertexId[0]] += distance * factor[0];
-        vectorPhysicalProperty[spring.vertexId[0]].position = vectorVertex[spring.vertexId[0]];
+        vectorVertex[spring.vertexId[0]].position += distance * factor[0];
+        vectorPhysicalProperty[spring.vertexId[0]].position = vectorVertex[spring.vertexId[0]].position;
 
-        vectorVertex[spring.vertexId[1]] -= distance * factor[1];
-        vectorPhysicalProperty[spring.vertexId[1]].position = vectorVertex[spring.vertexId[1]];
+        vectorVertex[spring.vertexId[1]].position -= distance * factor[1];
+        vectorPhysicalProperty[spring.vertexId[1]].position = vectorVertex[spring.vertexId[1]].position;
       }
     }
   }

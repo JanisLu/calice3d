@@ -38,7 +38,7 @@ CalCoreSkeleton::CalCoreSkeleton()
 
 CalCoreSkeleton::~CalCoreSkeleton()
 {
-  assert(m_listRootCoreBoneId.empty());
+  assert(m_vectorRootCoreBoneId.empty());
   assert(m_vectorCoreBone.empty());
 }
 
@@ -65,7 +65,7 @@ int CalCoreSkeleton::addCoreBone(CalCoreBone *pCoreBone)
   // if necessary, add the core bone to the root bone list
   if(pCoreBone->getParentId() == -1)
   {
-    m_listRootCoreBoneId.push_back(boneId);
+    m_vectorRootCoreBoneId.push_back(boneId);
   }
 
   return boneId;
@@ -81,8 +81,8 @@ int CalCoreSkeleton::addCoreBone(CalCoreBone *pCoreBone)
 void CalCoreSkeleton::calculateState()
 {
   // calculate all bone states of the skeleton
-  std::list<int>::iterator iteratorRootCoreBoneId;
-  for(iteratorRootCoreBoneId = m_listRootCoreBoneId.begin(); iteratorRootCoreBoneId != m_listRootCoreBoneId.end(); ++iteratorRootCoreBoneId)
+  std::vector<int>::iterator iteratorRootCoreBoneId;
+  for(iteratorRootCoreBoneId = m_vectorRootCoreBoneId.begin(); iteratorRootCoreBoneId != m_vectorRootCoreBoneId.end(); ++iteratorRootCoreBoneId)
   {
     m_vectorCoreBone[*iteratorRootCoreBoneId]->calculateState();
   }
@@ -123,7 +123,7 @@ void CalCoreSkeleton::destroy()
   m_vectorCoreBone.clear();
 
   // clear root bone id list
-  m_listRootCoreBoneId.clear();
+  m_vectorRootCoreBoneId.clear();
 }
 
  /*****************************************************************************/
@@ -173,17 +173,17 @@ int CalCoreSkeleton::getCoreBoneId(const std::string& strName)
 }
 
  /*****************************************************************************/
-/** Returns the root core bone id list.
+/** Returns the root core bone id vector.
   *
-  * This function returns the list that contains all root core bone IDs of the
+  * This function returns the vector that contains all root core bone IDs of the
   * core skeleton instance.
   *
-  * @return A reference to the root core bone id list.
+  * @return A reference to the root core bone id vector.
   *****************************************************************************/
 
-std::list<int>& CalCoreSkeleton::getListRootCoreBoneId()
+std::vector<int>& CalCoreSkeleton::getVectorRootCoreBoneId()
 {
-  return m_listRootCoreBoneId;
+  return m_vectorRootCoreBoneId;
 }
 
  /*****************************************************************************/

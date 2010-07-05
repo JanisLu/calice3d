@@ -98,18 +98,18 @@ bool CalSaver::saveCoreAnimation(const std::string& strFilename, CalCoreAnimatio
   }
 
   // get core track list
-  std::list<CalCoreTrack *>& listCoreTrack = pCoreAnimation->getListCoreTrack();
+  std::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
 
   // write the number of tracks
-  if(!CalPlatform::writeInteger(file, listCoreTrack.size()))
+  if(!CalPlatform::writeInteger(file, vectorCoreTrack.size()))
   {
     CalError::setLastError(CalError::FILE_WRITING_FAILED, __FILE__, __LINE__, strFilename);
     return 0;
   }
 
   // write all core bones
-  std::list<CalCoreTrack *>::iterator iteratorCoreTrack;
-  for(iteratorCoreTrack = listCoreTrack.begin(); iteratorCoreTrack != listCoreTrack.end(); ++iteratorCoreTrack)
+  std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+  for(iteratorCoreTrack = vectorCoreTrack.begin(); iteratorCoreTrack != vectorCoreTrack.end(); ++iteratorCoreTrack)
   {
     // save core track
     if(!saveCoreTrack(file, strFilename, *iteratorCoreTrack))
@@ -188,18 +188,18 @@ bool CalSaver::saveCoreBones(std::ofstream& file, const std::string& strFilename
   }
 
   // get children list
-  std::list<int>& listChildId = pCoreBone->getListChildId();
+  std::vector<int>& arrayChildId = pCoreBone->getChildIds();
 
   // write the number of children
-  if(!CalPlatform::writeInteger(file, listChildId.size()))
+  if(!CalPlatform::writeInteger(file, arrayChildId.size()))
   {
     CalError::setLastError(CalError::FILE_WRITING_FAILED, __FILE__, __LINE__, strFilename);
     return false;
   }
 
   // write all children ids
-  std::list<int>::iterator iteratorChildId;
-  for(iteratorChildId = listChildId.begin(); iteratorChildId != listChildId.end(); ++iteratorChildId)
+  std::vector<int>::iterator iteratorChildId;
+  for(iteratorChildId = arrayChildId.begin(); iteratorChildId != arrayChildId.end(); ++iteratorChildId)
   {
     // write the child id
     if(!CalPlatform::writeInteger(file, *iteratorChildId))

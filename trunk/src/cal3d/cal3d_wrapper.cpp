@@ -307,9 +307,9 @@ void CalCoreBone_Destroy(CalCoreBone *self)
 }
 
 /*
-std::list<int>& CalCoreBone_GetListChildId(CalCoreBone *self)
+std::list<int>& CalCoreBone_GetChildIds(CalCoreBone *self)
 {
-  return self->getListChildId();
+  return self->getChildIds();
 }
 */
 
@@ -1305,12 +1305,12 @@ void CalModel_Update(CalModel *self, float deltaTime)
 
 int CalPhysique_CalculateNormals(CalPhysique *self, CalSubmesh *pSubmesh, float *pNormalBuffer)
 {
-  return self->calculateNormals(pSubmesh, pNormalBuffer);
+	return self->calculateVertices(pSubmesh, pNormalBuffer, VERTEX_NORMAL);
 }
 
 int CalPhysique_CalculateVertices(CalPhysique *self, CalSubmesh *pSubmesh, float *pVertexBuffer)
 {
-  return self->calculateVertices(pSubmesh, pVertexBuffer);
+  return self->calculateVertices(pSubmesh, pVertexBuffer, VERTEX_XYZ);
 }
 
 Boolean CalPhysique_Create(CalPhysique *self, CalModel *pModel)
@@ -1465,11 +1465,6 @@ int CalRenderer_GetMeshCount(CalRenderer *self)
   return self->getMeshCount();
 }
 
-int CalRenderer_GetNormals(CalRenderer *self, float *pNormalBuffer)
-{
-  return self->getNormals(pNormalBuffer);
-}
-
 float CalRenderer_GetShininess(CalRenderer *self)
 {
   return self->getShininess();
@@ -1497,7 +1492,7 @@ int CalRenderer_GetVertexCount(CalRenderer *self)
 
 int CalRenderer_GetVertices(CalRenderer *self, float *pVertexBuffer)
 {
-  return self->getVertices(pVertexBuffer);
+  return self->getVertices(pVertexBuffer, 0);
 }
 
 CalRenderer *CalRenderer_New()

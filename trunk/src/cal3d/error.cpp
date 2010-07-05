@@ -128,6 +128,9 @@ std::string CalError::getLastErrorDescription()
     case NO_MESH_IN_MODEL:
       return "No mesh attached to the model";
       break;
+	case VERTEX_FORMAT:
+      return "The vertex format given does'nt correspond to sub-mesh data";
+	  break;
     default:
       break;
   }
