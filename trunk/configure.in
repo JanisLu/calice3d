@@ -1,0 +1,82 @@
+dnl ************************************************************************
+dnl
+dnl This file is part of the Cal3D library/package
+dnl Copyright (C) 2002 Bruno 'Beosil' Heidelberger (beosil@swileys.com)
+dnl
+dnl This library is free software; you can redistribute it and/or modify it
+dnl under the terms of the GNU Lesser General Public License as published by
+dnl the Free Software Foundation; either version 2.1 of the License, or (at
+dnl your option) any later version.
+dnl
+dnl ************************************************************************
+
+AC_INIT(src/cal3d/cal3d.h)
+
+AM_CONFIG_HEADER(config.h)
+
+AC_CANONICAL_SYSTEM
+
+AM_INIT_AUTOMAKE(cal3d,0.8devel)
+
+dnl ************************************************************************
+
+CAL3D_CHECK_USER_CXX_FLAGS
+
+dnl ************************************************************************
+
+AC_PROG_CXX
+
+AC_DISABLE_STATIC
+AC_LIBTOOL_WIN32_DLL
+AC_PROG_LIBTOOL
+
+AC_PROG_INSTALL
+
+AC_CHECK_PROG(DOXYGEN, doxygen, true, false)
+if test "$DOXYGEN" = false; then
+  AC_MSG_WARN([cannot find doxygen, unable to generate Cal3D API Reference!])
+fi
+
+AC_CHECK_PROG(DB2HTML, db2html, true, false)
+if test "$DB2HTML" = false; then
+  AC_MSG_WARN([cannot find db2html, unable to generate Cal3D User's Guide!])
+fi
+
+dnl ************************************************************************
+
+CAL3D_CHECK_BUILD
+
+dnl ************************************************************************
+
+AC_OUTPUT(Makefile src/Makefile src/cal3d/Makefile docs/Makefile docs/api/Makefile docs/shared/Makefile)
+
+dnl ************************************************************************
+
+AC_MSG_NOTICE(o-----------------------------------------------------------o)
+AC_MSG_NOTICE(| To build and install the Cal3D library type...            |)
+AC_MSG_NOTICE(|     make; make install                                    |)
+
+AC_MSG_NOTICE(|                                                           |)
+
+if test "$DB2HTML" = false; then
+  AC_MSG_NOTICE(| To generate the Cal3D User's Guide you need to install    |)
+  AC_MSG_NOTICE(| the DocBook tools first. ('docbktls' package)             |)
+else
+  AC_MSG_NOTICE(| To generate the Cal3D User's Guide type...                |)
+  AC_MSG_NOTICE(|     cd docs; make doc-guide                               |)
+fi
+
+AC_MSG_NOTICE(|                                                           |)
+
+if test "$DOXYGEN" = false; then
+  AC_MSG_NOTICE(| To generate the Cal3D API Reference you need to install   |)
+  AC_MSG_NOTICE(| the Doxygen tool first. (see http://www.doxygen.org)      |)
+else
+  AC_MSG_NOTICE(| To generate the Cal3D API Reference type...               |)
+  AC_MSG_NOTICE(|     cd docs; make doc-api                                 |)
+fi
+
+AC_MSG_NOTICE(o-----------------------------------------------------------o)
+
+dnl ************************************************************************
+
