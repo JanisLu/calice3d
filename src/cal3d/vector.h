@@ -48,26 +48,26 @@ public:
 
 // member functions
 public:
-  float& operator[](unsigned int i);
-  const float& operator[](unsigned int i) const;
-  void operator=(const CalVector& v);
-  void operator+=(const CalVector& v);
-  void operator-=(const CalVector& v);
-  void operator*=(const float d);
-  void operator*=(const CalQuaternion& q);
-  void operator/=(const float d);
-  friend CAL3D_API CalVector operator+(const CalVector& v, const CalVector& u);
-  friend CAL3D_API CalVector operator-(const CalVector& v, const CalVector& u);
-  friend CAL3D_API CalVector operator*(const CalVector& v, const float d);
-  friend CAL3D_API CalVector operator*(const float d, const CalVector& v);
-  friend CAL3D_API CalVector operator/(const CalVector& v, const float d);
-  friend CAL3D_API float operator*(const CalVector& v, const CalVector& u);
-  friend CAL3D_API CalVector operator%(const CalVector& v, const CalVector& u);
-  void blend(float d, const CalVector& v);
-  void clear();
-  float length();
-  float normalize();
-  void set(float vx, float vy, float vz);
+  inline float& operator[](unsigned int i);
+  inline const float& operator[](unsigned int i) const;
+  inline void operator=(const CalVector& v);
+  inline void operator+=(const CalVector& v);
+  inline void operator-=(const CalVector& v);
+  inline void operator*=(const float d);
+  inline void operator*=(const CalQuaternion& q);
+  inline void operator/=(const float d);
+  friend inline CAL3D_API CalVector operator+(const CalVector& v, const CalVector& u);
+  friend inline CAL3D_API CalVector operator-(const CalVector& v, const CalVector& u);
+  friend inline CAL3D_API CalVector operator*(const CalVector& v, const float d);
+  friend inline CAL3D_API CalVector operator*(const float d, const CalVector& v);
+  friend inline CAL3D_API CalVector operator/(const CalVector& v, const float d);
+  friend inline CAL3D_API float operator*(const CalVector& v, const CalVector& u);
+  friend inline CAL3D_API CalVector operator%(const CalVector& v, const CalVector& u);
+  inline void blend(float d, const CalVector& v);
+  inline void clear();
+  inline float length();
+  inline float normalize();
+  inline void set(float vx, float vy, float vz);
 };
 
 #endif
