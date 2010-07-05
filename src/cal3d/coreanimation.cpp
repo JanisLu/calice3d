@@ -37,7 +37,7 @@ CalCoreAnimation::CalCoreAnimation()
 
 CalCoreAnimation::~CalCoreAnimation()
 {
-  assert(m_listCoreTrack.empty());
+  assert(m_arrayCoreTrack.empty());
 }
 
  /*****************************************************************************/
@@ -54,7 +54,7 @@ CalCoreAnimation::~CalCoreAnimation()
 
 bool CalCoreAnimation::addCoreTrack(CalCoreTrack *pCoreTrack)
 {
-  m_listCoreTrack.push_back(pCoreTrack);
+  m_arrayCoreTrack.push_back(pCoreTrack);
 
   return true;
 }
@@ -84,15 +84,15 @@ bool CalCoreAnimation::create()
 void CalCoreAnimation::destroy()
 {
   // destroy all core tracks
-  while(!m_listCoreTrack.empty())
+  std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+  for(iteratorCoreTrack = m_arrayCoreTrack.begin(); iteratorCoreTrack != m_arrayCoreTrack.end(); ++iteratorCoreTrack)
   {
-    CalCoreTrack *pCoreTrack;
-    pCoreTrack = m_listCoreTrack.front();
-    m_listCoreTrack.pop_front();
-
-    pCoreTrack->destroy();
-    delete pCoreTrack;
+    CalCoreTrack *pCoreTrack = *iteratorCoreTrack;
+	pCoreTrack->destroy();
+	delete pCoreTrack;
   }
+
+  m_arrayCoreTrack.clear();
 }
 
  /*****************************************************************************/
@@ -105,14 +105,14 @@ void CalCoreAnimation::destroy()
   *
   * @return One of the following values:
   *         \li a pointer to the core track
-  *         \li \b 0 if an error happend
+  *         \li \b 0 if an error happened
   *****************************************************************************/
 
 CalCoreTrack *CalCoreAnimation::getCoreTrack(int coreBoneId)
 {
   // loop through all core bones
-  std::list<CalCoreTrack *>::iterator iteratorCoreTrack;
-  for(iteratorCoreTrack = m_listCoreTrack.begin(); iteratorCoreTrack != m_listCoreTrack.end(); ++iteratorCoreTrack)
+  std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+  for(iteratorCoreTrack = m_arrayCoreTrack.begin(); iteratorCoreTrack != m_arrayCoreTrack.end(); ++iteratorCoreTrack)
   {
     // get the core bone
     CalCoreTrack *pCoreTrack;
@@ -140,17 +140,17 @@ float CalCoreAnimation::getDuration()
 }
 
  /*****************************************************************************/
-/** Returns the core track list.
+/** Returns the core tracks.
   *
-  * This function returns the list that contains all core tracks of the core
+  * This function returns the vector that contains all core tracks of the core
   * animation instance.
   *
-  * @return A reference to the core track list.
+  * @return A reference to the core track vector.
   *****************************************************************************/
 
-std::list<CalCoreTrack *>& CalCoreAnimation::getListCoreTrack()
+std::vector<CalCoreTrack *>& CalCoreAnimation::getCoreTracks()
 {
-  return m_listCoreTrack;
+  return m_arrayCoreTrack;
 }
 
  /*****************************************************************************/

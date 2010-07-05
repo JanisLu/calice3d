@@ -50,11 +50,17 @@ public:
     int vertexId[3];
   } Face;
 
+  /// The core submesh Vertex.
+  typedef struct
+  {
+	  CalVector position;
+	  CalVector normal;
+  } Vertex;
+
 // member variables
 protected:
   CalCoreSubmesh *m_pCoreSubmesh;
-  std::vector<CalVector> m_vectorVertex;
-  std::vector<CalVector> m_vectorNormal;
+  std::vector<Vertex> m_vectorVertex;
   std::vector<Face> m_vectorFace;
   std::vector<PhysicalProperty> m_vectorPhysicalProperty;
   int m_vertexCount;
@@ -75,9 +81,8 @@ public:
   int getCoreMaterialId();
   int getFaceCount();
   int getFaces(int *pFaceBuffer);
-  std::vector<CalVector>& getVectorNormal();
   std::vector<PhysicalProperty>& getVectorPhysicalProperty();
-  std::vector<CalVector>& getVectorVertex();
+  std::vector<Vertex>& getVectorVertex();
   int getVertexCount();
   bool hasInternalData();
   void setCoreMaterialId(int coreMaterialId);

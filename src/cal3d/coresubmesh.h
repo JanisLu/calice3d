@@ -104,12 +104,12 @@ public:
   int getVertexCount();
   bool reserve(int vertexCount, int textureCoordinateCount, int faceCount, int springCount);
   void setCoreMaterialThreadId(int coreMaterialThreadId);
-  bool setFace(int faceId, const Face& face);
+  void setFace(int faceId, const Face& face);
   void setLodCount(int lodCount);
-  bool setPhysicalProperty(int vertexId, const PhysicalProperty& physicalProperty);
-  bool setSpring(int springId, const Spring& spring);
-  bool setTextureCoordinate(int vertexId, int textureCoordinateId, const TextureCoordinate& textureCoordinate);
-  bool setVertex(int vertexId, const Vertex& vertex);
+  void setPhysicalProperty(int vertexId, const PhysicalProperty& physicalProperty);
+  void setSpring(int springId, const Spring& spring);
+  void setTextureCoordinate(int vertexId, int textureCoordinateId, const TextureCoordinate& textureCoordinate);
+  void setVertex(int vertexId, const Vertex& vertex);
 };
 
 #endif

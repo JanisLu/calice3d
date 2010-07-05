@@ -22,6 +22,7 @@
 //****************************************************************************//
 
 class CalCoreBone;
+class CalLoader;
 
 //****************************************************************************//
 // Class declaration                                                          //
@@ -33,10 +34,11 @@ class CalCoreBone;
 
 class CAL3D_API CalCoreSkeleton
 {
+  friend class CalLoader;
 // member variables
 protected:
   std::vector<CalCoreBone *> m_vectorCoreBone;
-  std::list<int> m_listRootCoreBoneId;
+  std::vector<int> m_vectorRootCoreBoneId;
 
 // constructors/destructor
 public:
@@ -51,7 +53,7 @@ public:
   void destroy();
   CalCoreBone *getCoreBone(int coreBoneId);
   int getCoreBoneId(const std::string& strName);
-  std::list<int>& getListRootCoreBoneId();
+  std::vector<int>& getVectorRootCoreBoneId();
   std::vector<CalCoreBone *>& getVectorCoreBone();
 };
 

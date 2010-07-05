@@ -510,7 +510,6 @@ extern "C"
   CAL3D_WRAPPER_API int CalRenderer_GetMapCount(CalRenderer *self);
   CAL3D_WRAPPER_API CalUserData CalRenderer_GetMapUserData(CalRenderer *self, int mapId);
   CAL3D_WRAPPER_API int CalRenderer_GetMeshCount(CalRenderer *self);
-  CAL3D_WRAPPER_API int CalRenderer_GetNormals(CalRenderer *self, float *pNormalBuffer);
   CAL3D_WRAPPER_API float CalRenderer_GetShininess(CalRenderer *self);
   CAL3D_WRAPPER_API void CalRenderer_GetSpecularColor(CalRenderer *self, unsigned char *pColorBuffer);
   CAL3D_WRAPPER_API int CalRenderer_GetSubmeshCount(CalRenderer *self, int meshId);

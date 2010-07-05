@@ -22,6 +22,7 @@
 //****************************************************************************//
 
 class CalCoreSubmesh;
+class CalLoader;
 
 //****************************************************************************//
 // Class declaration                                                          //
@@ -33,6 +34,7 @@ class CalCoreSubmesh;
 
 class CAL3D_API CalCoreMesh
 {
+  friend class CalLoader;
 // member variables
 protected:
   std::vector<CalCoreSubmesh *> m_vectorCoreSubmesh;

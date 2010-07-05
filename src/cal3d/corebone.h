@@ -24,6 +24,7 @@
 //****************************************************************************//
 
 class CalCoreSkeleton;
+class CalLoader;
 
 //****************************************************************************//
 // Class declaration                                                          //
@@ -35,12 +36,13 @@ class CalCoreSkeleton;
 
 class CAL3D_API CalCoreBone
 {
+  friend class CalLoader;
 // member variables
 protected:
   std::string m_strName;
   CalCoreSkeleton *m_pCoreSkeleton;
   int m_parentId;
-  std::list<int> m_listChildId;
+  std::vector<int> m_arrayChildId;
   CalVector m_translation;
   CalQuaternion m_rotation;
   CalVector m_translationAbsolute;
@@ -60,7 +62,7 @@ public:
   void calculateState();
   bool create(const std::string& strName);
   void destroy();
-  std::list<int>& getListChildId();
+  std::vector<int>& getChildIds();
   const std::string& getName();
   int getParentId();
   const CalQuaternion& getRotation();

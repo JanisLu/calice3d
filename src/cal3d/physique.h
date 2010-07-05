@@ -46,7 +46,7 @@ public:
 // member functions	
 public:
   int calculateNormals(CalSubmesh *pSubmesh, float *pNormalBuffer);
-  int calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer);
+  int calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, int iVertexFormat);
   bool create(CalModel *pModel);
   void destroy();
   void update();

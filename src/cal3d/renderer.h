@@ -31,6 +31,17 @@ class CalSubmesh;
  /*****************************************************************************/
 /** The renderer class.
   *****************************************************************************/
+#define VERTEX_XYZ              0x002
+#define VERTEX_NORMAL           0x010
+#define VERTEX_TEX0             0x000
+#define VERTEX_TEX1             0x100
+#define VERTEX_TEX2             0x200
+#define VERTEX_TEX3             0x300
+#define VERTEX_TEX4             0x400
+#define VERTEX_TEX5             0x500
+#define VERTEX_TEX6             0x600
+#define VERTEX_TEX7             0x700
+#define VERTEX_TEX8             0x800
 
 class CAL3D_API CalRenderer
 {
@@ -57,13 +68,11 @@ public:
   int getMapCount();
   Cal::UserData getMapUserData(int mapId);
   int getMeshCount();
-  int getNormals(float *pNormalBuffer);
   float getShininess();
   void getSpecularColor(unsigned char *pColorBuffer);
   int getSubmeshCount(int meshId);
-  int getTextureCoordinates(int mapId, float *pTextureCoordinateBuffer);
   int getVertexCount();
-  int getVertices(float *pVertexBuffer);
+  int getVertices(void *pVertexBuffer, int iVertexFormat);
   bool selectMeshSubmesh(int meshId, int submeshId);
 };
 

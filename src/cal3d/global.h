@@ -43,6 +43,8 @@ namespace Cal
 
   // file versions
   const int CURRENT_FILE_VERSION = LIBRARY_VERSION;
+  const int SKELETON_FILE_VERSION = 1200;
+  const int ANIMATION_FILE_VERSION = 1200;
   const int EARLIEST_COMPATIBLE_FILE_VERSION = 699;
 
   // empty string

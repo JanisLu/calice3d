@@ -22,6 +22,7 @@
 //****************************************************************************//
 
 class CalCoreTrack;
+class CalLoader;
 
 //****************************************************************************//
 // Class declaration                                                          //
@@ -33,10 +34,11 @@ class CalCoreTrack;
 
 class CAL3D_API CalCoreAnimation
 {
+  friend class CalLoader;
 // member variables
 protected:
   float m_duration;
-  std::list<CalCoreTrack *> m_listCoreTrack;
+  std::vector<CalCoreTrack *> m_arrayCoreTrack;
 
 // constructors/destructor
 public:
@@ -50,7 +52,7 @@ public:
   void destroy();
   CalCoreTrack *getCoreTrack(int coreBoneId);
   float getDuration();
-  std::list<CalCoreTrack *>& getListCoreTrack();
+  std::vector<CalCoreTrack *>& getCoreTracks();
   void setDuration(float duration);
 };
 
