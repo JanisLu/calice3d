@@ -29,6 +29,8 @@
 #include "animation_action.h"
 #include "animation_cycle.h"
 
+#include <math.h>
+
  /*****************************************************************************/
 /** Constructs the mixer instance.
   *
@@ -48,8 +50,8 @@ CalMixer::CalMixer()
 CalMixer::~CalMixer()
 {
   assert(m_vectorAnimation.empty());
-  assert(m_listAnimationCycle.empty());
-  assert(m_listAnimationAction.empty());
+  assert(m_vectorAnimationCycle.empty());
+  assert(m_vectorAnimationAction.empty());
 }
 
  /*****************************************************************************/
@@ -109,7 +111,7 @@ bool CalMixer::blendCycle(int id, float weight, float delay)
 
     // insert new animation into the tables
     m_vectorAnimation[id] = pAnimationCycle;
-    m_listAnimationCycle.push_front(pAnimationCycle);
+    m_vectorAnimationCycle.push_back(pAnimationCycle);
 
     // blend the animation
     return pAnimationCycle->blend(weight, delay);
@@ -241,27 +243,25 @@ bool CalMixer::create(CalModel *pModel)
 
 void CalMixer::destroy()
 {
+  unsigned int i = 0;
   // destroy all active animation actions
-  while(!m_listAnimationAction.empty())
+  for (i = 0; i < m_vectorAnimationAction.size(); i++)
   {
-    CalAnimationAction *pAnimationAction;
-    pAnimationAction = m_listAnimationAction.front();
-    m_listAnimationAction.pop_front();
-
-    pAnimationAction->destroy();
-    delete pAnimationAction;
+	m_vectorAnimationAction[i]->destroy();
+	delete m_vectorAnimationAction[i];
   }
+
+  m_vectorAnimationAction.clear();
+
 
   // destroy all active animation cycles
-  while(!m_listAnimationCycle.empty())
+  for (i = 0; i < m_vectorAnimationCycle.size(); i++)
   {
-    CalAnimationCycle *pAnimationCycle;
-    pAnimationCycle = m_listAnimationCycle.front();
-    m_listAnimationCycle.pop_front();
-
-    pAnimationCycle->destroy();
-    delete pAnimationCycle;
+	  m_vectorAnimationCycle[i]->destroy();
+	  delete m_vectorAnimationCycle[i];
   }
+
+  m_vectorAnimationCycle.clear();
 
   // clear the animation table
   m_vectorAnimation.clear();
@@ -318,7 +318,7 @@ bool CalMixer::executeAction(int id, float delayIn, float delayOut)
   }
 
   // insert new animation into the table
-  m_listAnimationAction.push_front(pAnimationAction);
+  m_vectorAnimationAction.push_back(pAnimationAction);
 
   // execute the animation
   return pAnimationAction->execute(delayIn, delayOut);
@@ -345,15 +345,15 @@ void CalMixer::updateAnimation(float deltaTime)
     m_animationTime += deltaTime;
     if(m_animationTime >= m_animationDuration)
     {
-      m_animationTime = fmod(m_animationTime, m_animationDuration);
+      m_animationTime = fmodf(m_animationTime, m_animationDuration);
     }
   }
 
   // update all active animation actions of this model
-  std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
-  iteratorAnimationAction = m_listAnimationAction.begin();
+  std::vector<CalAnimationAction *>::iterator iteratorAnimationAction;
+  iteratorAnimationAction = m_vectorAnimationAction.begin();
 
-  while(iteratorAnimationAction != m_listAnimationAction.end())
+  while(iteratorAnimationAction != m_vectorAnimationAction.end())
   {
     // update and check if animation action is still active
     if((*iteratorAnimationAction)->update(deltaTime))
@@ -365,21 +365,21 @@ void CalMixer::updateAnimation(float deltaTime)
       // animation action has ended, destroy and remove it from the animation list
       (*iteratorAnimationAction)->destroy();
       delete (*iteratorAnimationAction);
-      iteratorAnimationAction = m_listAnimationAction.erase(iteratorAnimationAction);
+      iteratorAnimationAction = m_vectorAnimationAction.erase(iteratorAnimationAction);
     }
   }
 
   // todo: update all active animation poses of this model
 
   // update the weight of all active animation cycles of this model
-  std::list<CalAnimationCycle *>::iterator iteratorAnimationCycle;
-  iteratorAnimationCycle = m_listAnimationCycle.begin();
+  std::vector<CalAnimationCycle *>::iterator iteratorAnimationCycle;
+  iteratorAnimationCycle = m_vectorAnimationCycle.begin();
 
   float accumulatedWeight, accumulatedDuration;
   accumulatedWeight = 0.0f;
   accumulatedDuration = 0.0f;
 
-  while(iteratorAnimationCycle != m_listAnimationCycle.end())
+  while(iteratorAnimationCycle != m_vectorAnimationCycle.end())
   {
     // update and check if animation cycle is still active
     if((*iteratorAnimationCycle)->update(deltaTime))
@@ -398,7 +398,7 @@ void CalMixer::updateAnimation(float deltaTime)
       // animation cycle has ended, destroy and remove it from the animation list
       (*iteratorAnimationCycle)->destroy();
       delete (*iteratorAnimationCycle);
-      iteratorAnimationCycle = m_listAnimationCycle.erase(iteratorAnimationCycle);
+      iteratorAnimationCycle = m_vectorAnimationCycle.erase(iteratorAnimationCycle);
     }
   }
 
@@ -433,8 +433,8 @@ void CalMixer::updateSkeleton()
   std::vector<CalBone *>& vectorBone = pSkeleton->getVectorBone();
 
   // loop through all animation actions
-  std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
-  for(iteratorAnimationAction = m_listAnimationAction.begin(); iteratorAnimationAction != m_listAnimationAction.end(); ++iteratorAnimationAction)
+  std::vector<CalAnimationAction *>::iterator iteratorAnimationAction;
+  for(iteratorAnimationAction = m_vectorAnimationAction.begin(); iteratorAnimationAction != m_vectorAnimationAction.end(); ++iteratorAnimationAction)
   {
     // get the core animation instance
     CalCoreAnimation *pCoreAnimation;
@@ -465,8 +465,8 @@ void CalMixer::updateSkeleton()
   pSkeleton->lockState();
 
   // loop through all animation cycles
-  std::list<CalAnimationCycle *>::iterator iteratorAnimationCycle;
-  for(iteratorAnimationCycle = m_listAnimationCycle.begin(); iteratorAnimationCycle != m_listAnimationCycle.end(); ++iteratorAnimationCycle)
+  std::vector<CalAnimationCycle *>::iterator iteratorAnimationCycle;
+  for(iteratorAnimationCycle = m_vectorAnimationCycle.begin(); iteratorAnimationCycle != m_vectorAnimationCycle.end(); ++iteratorAnimationCycle)
   {
     // get the core animation instance
     CalCoreAnimation *pCoreAnimation;

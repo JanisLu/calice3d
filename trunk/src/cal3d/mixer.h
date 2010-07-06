@@ -40,8 +40,8 @@ class CAL3D_API CalMixer
 public:
   CalModel *m_pModel;
   std::vector<CalAnimation *> m_vectorAnimation;
-  std::list<CalAnimationAction *> m_listAnimationAction;
-  std::list<CalAnimationCycle *> m_listAnimationCycle;
+  std::vector<CalAnimationAction *> m_vectorAnimationAction;
+  std::vector<CalAnimationCycle *> m_vectorAnimationCycle;
   float m_animationTime;
   float m_animationDuration;
 
