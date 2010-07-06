@@ -52,7 +52,7 @@ public:
   bool create();
   void destroy();
   CalCoreBone *getCoreBone(int coreBoneId);
-  int getCoreBoneId(const std::string& strName);
+  int getCoreBoneId(const char* strName);
   std::vector<int>& getVectorRootCoreBoneId();
   std::vector<CalCoreBone *>& getVectorCoreBone();
 };

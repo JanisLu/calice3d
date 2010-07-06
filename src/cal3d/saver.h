@@ -48,16 +48,16 @@ public:
 
 // member functions
 public:
-  bool saveCoreAnimation(const std::string& strFilename, CalCoreAnimation *pCoreAnimation);
-  bool saveCoreMaterial(const std::string& strFilename, CalCoreMaterial *pCoreMaterial);
-  bool saveCoreMesh(const std::string& strFilename, CalCoreMesh *pCoreMesh);
-  bool saveCoreSkeleton(const std::string& strFilename, CalCoreSkeleton *pCoreSkeleton);
+  bool saveCoreAnimation(const char* strFilename, CalCoreAnimation *pCoreAnimation);
+  bool saveCoreMaterial(const char* strFilename, CalCoreMaterial *pCoreMaterial);
+  bool saveCoreMesh(const char* strFilename, CalCoreMesh *pCoreMesh);
+  bool saveCoreSkeleton(const char* strFilename, CalCoreSkeleton *pCoreSkeleton);
 
 protected:
-  bool saveCoreBones(std::ofstream& file, const std::string& strFilename, CalCoreBone *pCoreBone);
-  bool saveCoreKeyframe(std::ofstream& file, const std::string& strFilename, CalCoreKeyframe *pCoreKeyframe);
-  bool saveCoreSubmesh(std::ofstream& file, const std::string& strFilename, CalCoreSubmesh *pCoreSubmesh);
-  bool saveCoreTrack(std::ofstream& file, const std::string& strFilename, CalCoreTrack *pCoreTrack);
+  bool saveCoreBones(std::ofstream& file, const char* strFilename, CalCoreBone *pCoreBone);
+  bool saveCoreKeyframe(std::ofstream& file, const char* strFilename, CalCoreKeyframe *pCoreKeyframe);
+  bool saveCoreSubmesh(std::ofstream& file, const char* strFilename, CalCoreSubmesh *pCoreSubmesh);
+  bool saveCoreTrack(std::ofstream& file, const char* strFilename, CalCoreTrack *pCoreTrack);
 };
 
 #endif

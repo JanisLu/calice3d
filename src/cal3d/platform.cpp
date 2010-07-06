@@ -114,24 +114,21 @@ bool CalPlatform::readInteger(std::ifstream& file, int& value)
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalPlatform::readString(std::ifstream& file, std::string& strValue)
+bool CalPlatform::readString(std::ifstream& file, char* strValue, int length)
 {
   // get the string length
-  int length;
-  file.read((char *)&length, 4);
+  int _length;
+  file.read((char *)&_length, 4);
 
 #ifdef CAL3D_BIG_ENDIAN
   length = (length << 24) | ((length << 8) & 0x00FF0000) | ((length >> 8) & 0x0000FF00) | (length >> 24);
 #endif
 
-  if(length < 0) return false;
+  if(_length < 0) return false;
+  if(_length > length) return false;
 
   // read the string
-  char *strBuffer;
-  strBuffer = new char[length];
-  file.read(strBuffer, length);
-  strValue = strBuffer;
-  delete [] strBuffer;
+  file.read(strValue, _length);
 
   return true;
 }

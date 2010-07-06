@@ -41,7 +41,7 @@ public:
   /// The core material Map.
   typedef struct
   {
-    std::string strFilename;
+    char strFilename[512];
     Cal::UserData userData;
   } Map;
 
@@ -66,7 +66,7 @@ public:
   Color& getAmbientColor();
   Color& getDiffuseColor();
   int getMapCount();
-  const std::string& getMapFilename(int mapId);
+  const char* getMapFilename(int mapId);
   Cal::UserData getMapUserData(int mapId);
   float getShininess();
   Color& getSpecularColor();

@@ -39,7 +39,7 @@ class CAL3D_API CalCoreBone
   friend class CalLoader;
 // member variables
 protected:
-  std::string m_strName;
+  char m_strName[32];
   CalCoreSkeleton *m_pCoreSkeleton;
   int m_parentId;
   std::vector<int> m_arrayChildId;
@@ -60,10 +60,10 @@ public:
 public:
   bool addChildId(int childId);
   void calculateState();
-  bool create(const std::string& strName);
+  bool create(const char* strName);
   void destroy();
   std::vector<int>& getChildIds();
-  const std::string& getName();
+  const char* getName();
   int getParentId();
   const CalQuaternion& getRotation();
   const CalQuaternion& getRotationAbsolute();

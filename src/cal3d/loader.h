@@ -48,16 +48,16 @@ public:
 
 // member functions
 public:
-  CalCoreAnimation *loadCoreAnimation(const std::string& strFilename);
-  CalCoreMaterial *loadCoreMaterial(const std::string& strFilename);
-  CalCoreMesh *loadCoreMesh(const std::string& strFilename);
-  CalCoreSkeleton *loadCoreSkeleton(const std::string& strFilename);
+  CalCoreAnimation *loadCoreAnimation(const char* strFilename);
+  CalCoreMaterial *loadCoreMaterial(const char* strFilename);
+  CalCoreMesh *loadCoreMesh(const char* strFilename);
+  CalCoreSkeleton *loadCoreSkeleton(const char* strFilename);
 
 protected:
-  CalCoreBone *loadCoreBones(std::ifstream& file, const std::string& strFilename);
-  CalCoreKeyframe *loadCoreKeyframe(std::ifstream& file, const std::string& strFilename);
-  CalCoreSubmesh *loadCoreSubmesh(std::ifstream& file, const std::string& strFilename);
-  CalCoreTrack *loadCoreTrack(std::ifstream& file, const std::string& strFilename);
+  CalCoreBone *loadCoreBones(std::ifstream& file, const char* strFilename);
+  CalCoreKeyframe *loadCoreKeyframe(std::ifstream& file, const char* strFilename);
+  CalCoreSubmesh *loadCoreSubmesh(std::ifstream& file, const char* strFilename);
+  CalCoreTrack *loadCoreTrack(std::ifstream& file, const char* strFilename);
 };
 
 #endif

@@ -39,7 +39,7 @@ class CAL3D_API CalCoreModel
   friend class CalLoader;
 // member variables
 protected:
-  std::string m_strName;
+  char m_strName[32];
   CalCoreSkeleton *m_pCoreSkeleton;
   std::vector<CalCoreAnimation *> m_vectorCoreAnimation;
   std::vector<CalCoreMesh *> m_vectorCoreMesh;
@@ -57,7 +57,7 @@ public:
   int addCoreAnimation(CalCoreAnimation *pCoreAnimation);
   int addCoreMaterial(CalCoreMaterial *pCoreMaterial);
   int addCoreMesh(CalCoreMesh *pCoreMesh);
-  bool create(const std::string& strName);
+  bool create(const char* strName);
   bool createCoreMaterialThread(int coreMaterialThreadId);
   void destroy();
   CalCoreAnimation *getCoreAnimation(int coreAnimationId);
@@ -69,14 +69,14 @@ public:
   int getCoreMeshCount();
   CalCoreSkeleton *getCoreSkeleton();
   Cal::UserData getUserData();
-  int loadCoreAnimation(const std::string& strFilename);
-  int loadCoreMaterial(const std::string& strFilename);
-  int loadCoreMesh(const std::string& strFilename);
-  bool loadCoreSkeleton(const std::string& strFilename);
-  bool saveCoreAnimation(const std::string& strFilename, int coreAnimtionId);
-  bool saveCoreMaterial(const std::string& strFilename, int coreMaterialId);
-  bool saveCoreMesh(const std::string& strFilename, int coreMeshId);
-  bool saveCoreSkeleton(const std::string& strFilename);
+  int loadCoreAnimation(const char* strFilename);
+  int loadCoreMaterial(const char* strFilename);
+  int loadCoreMesh(const char* strFilename);
+  bool loadCoreSkeleton(const char* strFilename);
+  bool saveCoreAnimation(const char* strFilename, int coreAnimtionId);
+  bool saveCoreMaterial(const char* strFilename, int coreMaterialId);
+  bool saveCoreMesh(const char* strFilename, int coreMeshId);
+  bool saveCoreSkeleton(const char* strFilename);
   bool setCoreMaterialId(int coreMaterialThreadId, int coreMaterialSetId, int coreMaterialId);
   void setCoreSkeleton(CalCoreSkeleton *pCoreSkeleton);
   void setUserData(Cal::UserData userData);
