@@ -62,19 +62,13 @@
 // Includes                                                                   //
 //****************************************************************************//
 
-// standard includes
-#include <cstdlib>
-#include <cmath>
-
 // debug includes
 #include <cassert>
 
 // STL includes
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <vector>
-#include <list>
 #include <map>
 
 //****************************************************************************//
