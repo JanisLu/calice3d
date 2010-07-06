@@ -219,7 +219,7 @@ void CalError::setLastError(Code code, char* strFile, int line, const char* strT
   m_strLastErrorFile = strFile;
   m_lastErrorLine = line;
   if (strText)
-	strncpy(m_strLastErrorText, strText, 512);
+	strncpy_s(m_strLastErrorText, strlen(m_strLastErrorText), strText, 512);
   else
     m_strLastErrorText[0] = 0;
 
