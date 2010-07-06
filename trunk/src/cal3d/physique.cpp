@@ -26,6 +26,7 @@
 #include "bone.h"
 #include "coresubmesh.h"
 #include "renderer.h"
+#include <math.h>
 
  /*****************************************************************************/
 /** Constructs the physique instance.
@@ -179,7 +180,7 @@ int CalPhysique::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, i
 
 	if (iVertexFormat & VERTEX_NORMAL)
 	{
-      float scale = 1.0f / sqrt(nx * nx + ny * ny + nz * nz);
+      float scale = 1.0f / sqrtf(nx * nx + ny * ny + nz * nz);
 	  *pVertexBuffer++ = nx*scale;
 	  *pVertexBuffer++ = ny*scale;
 	  *pVertexBuffer++ = nz*scale;
@@ -260,7 +261,7 @@ int CalPhysique::calculateNormals(CalSubmesh *pSubmesh, float *pNormalBuffer)
 
     // re-normalize normal
     float scale;
-    scale = 1.0f / sqrt(nx * nx + ny * ny + nz * nz);
+    scale = 1.0f / sqrtf(nx * nx + ny * ny + nz * nz);
 
     pNormalBuffer[0] = nx * scale;
     pNormalBuffer[1] = ny * scale;

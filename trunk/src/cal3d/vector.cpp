@@ -19,6 +19,8 @@
 #include "vector.h"
 #include "quaternion.h"
 
+#include <math.h>
+
  /*****************************************************************************/
 /** Constructs the vector instance.
   *
@@ -346,7 +348,7 @@ void CalVector::clear()
 
 float CalVector::length()
 {
-  return sqrt(x * x + y * y + z * z);
+  return sqrtf(x * x + y * y + z * z);
 }
 
  /*****************************************************************************/
@@ -361,7 +363,7 @@ float CalVector::normalize()
 {
   // calculate the length of the vector
   float length;
-  length =sqrt(x * x + y * y + z * z);
+  length =sqrtf(x * x + y * y + z * z);
 
   // normalize the vector
   x /= length;

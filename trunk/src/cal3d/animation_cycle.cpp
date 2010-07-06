@@ -19,6 +19,7 @@
 #include "animation_cycle.h"
 #include "error.h"
 #include "coreanimation.h"
+#include <math.h>
 
  /*****************************************************************************/
 /** Constructs the animation cycle instance.
@@ -183,7 +184,7 @@ bool CalAnimationCycle::update(float deltaTime)
     m_time += deltaTime * m_timeFactor;
     if(m_time >= m_pCoreAnimation->getDuration())
     {
-      m_time = fmod(m_time, m_pCoreAnimation->getDuration());
+      m_time = fmodf(m_time, m_pCoreAnimation->getDuration());
     }
   }
 
