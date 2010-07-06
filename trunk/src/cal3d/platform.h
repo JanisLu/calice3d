@@ -101,7 +101,7 @@ public:
   static bool writeBytes(std::ofstream& file, const void *pBuffer, int length);
   static bool writeFloat(std::ofstream& file, float value);
   static bool writeInteger(std::ofstream& file, int value);
-  static bool writeString(std::ofstream& file, const std::string& strValue);
+  static bool writeString(std::ofstream& file, const char* strValue);
 };
 
 #endif
