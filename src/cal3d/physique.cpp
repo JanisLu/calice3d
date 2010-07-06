@@ -180,9 +180,9 @@ int CalPhysique::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, i
 	if (iVertexFormat & VERTEX_NORMAL)
 	{
       float scale = 1.0f / sqrt(nx * nx + ny * ny + nz * nz);
-	  *pVertexBuffer++ = nx;
-	  *pVertexBuffer++ = ny;
-	  *pVertexBuffer++ = nz;
+	  *pVertexBuffer++ = nx*scale;
+	  *pVertexBuffer++ = ny*scale;
+	  *pVertexBuffer++ = nz*scale;
 	}
 
 	for (unsigned int numTexCoord = 0; numTexCoord < vectorvectorTextureCoordinate.size(); numTexCoord++)

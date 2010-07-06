@@ -210,18 +210,19 @@ bool CalPlatform::writeInteger(std::ofstream& file, int value)
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalPlatform::writeString(std::ofstream& file, const std::string& strValue)
+bool CalPlatform::writeString(std::ofstream& file, const char* strValue)
 {
   // get the string length
-  int length;
-  length = strValue.size() + 1;
+  int length = strlen(strValue) + 1;
 
 #ifdef CAL3D_BIG_ENDIAN
-  length = (length << 24) | ((length << 8) & 0x00FF0000) | ((length >> 8) & 0x0000FF00) | (length >> 24);
+  int tmp = (length << 24) | ((length << 8) & 0x00FF0000) | ((length >> 8) & 0x0000FF00) | (length >> 24);
+  file.write((char *)&tmp, 4);
+#else
+  file.write((char *)&length, 4);
 #endif
 
-  file.write((char *)&length, 4);
-  file.write(strValue.c_str(), length);
+  file.write(strValue, length);
 
   return !file ? false : true;
 }
