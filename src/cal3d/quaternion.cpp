@@ -18,6 +18,7 @@
 
 #include "quaternion.h"
 #include "vector.h"
+#include <math.h>
 
  /*****************************************************************************/
 /** Constructs the quaternion instance.
@@ -211,13 +212,13 @@ void CalQuaternion::blend(float d, const CalQuaternion& q)
   else
   {
     float theta;
-    theta = acos(norm);
+    theta = acosf(norm);
 
     float s;
-    s = 1.0f / sin(theta);
+    s = 1.0f / sinf(theta);
 
-    inv_d = sin((1.0f - d) * theta) * s;
-    d = sin(d * theta) * s;
+    inv_d = sinf((1.0f - d) * theta) * s;
+    d = sinf(d * theta) * s;
   }
 
   if(bFlip)
