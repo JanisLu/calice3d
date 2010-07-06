@@ -161,12 +161,13 @@ CalCoreBone *CalCoreSkeleton::getCoreBone(int coreBoneId)
   *         \li \b -1 if an error happend
   *****************************************************************************/
 
-int CalCoreSkeleton::getCoreBoneId(const std::string& strName)
+int CalCoreSkeleton::getCoreBoneId(const char* strName)
 {
   int boneId;
   for(boneId = 0; boneId < (int)m_vectorCoreBone.size(); boneId++)
   {
-    if(m_vectorCoreBone[boneId]->getName() == strName) return boneId;
+    if(strncmp(m_vectorCoreBone[boneId]->getName(), strName, 32) == 0)
+		return boneId;
   }
 
   return -1;

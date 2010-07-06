@@ -56,9 +56,9 @@ public:
 // member variables
 protected:
   static Code m_lastErrorCode;
-  static std::string m_strLastErrorFile;
+  static char* m_strLastErrorFile;
   static int m_lastErrorLine;
-  static std::string m_strLastErrorText;
+  static char *m_strLastErrorText;
 
 // constructors/destructor
 protected:
@@ -68,12 +68,12 @@ protected:
 // member functions	
 public:
   static Code getLastErrorCode();
-  static std::string getLastErrorDescription();
-  static const std::string& getLastErrorFile();
+  static char* getLastErrorDescription();
+  static const char* getLastErrorFile();
   static int getLastErrorLine();
-  static const std::string& getLastErrorText();
+  static const char* getLastErrorText();
   static void printLastError();
-  static void setLastError(Code code, const std::string& strFile, int line, const std::string& strText = "");
+  static void setLastError(Code code, char* strFile, int line, const char* strText = NULL);
 };
 
 #endif

@@ -63,11 +63,11 @@ CalLoader::~CalLoader()
   *         \li \b 0 if an error happend
   *****************************************************************************/
 
-CalCoreAnimation *CalLoader::loadCoreAnimation(const std::string& strFilename)
+CalCoreAnimation *CalLoader::loadCoreAnimation(const char* strFilename)
 {
   // open the file
   std::ifstream file;
-  file.open(strFilename.c_str(), std::ios::in | std::ios::binary);
+  file.open(strFilename, std::ios::in | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_NOT_FOUND, __FILE__, __LINE__, strFilename);
@@ -177,7 +177,7 @@ CalCoreAnimation *CalLoader::loadCoreAnimation(const std::string& strFilename)
   *         \li \b 0 if an error happend
   *****************************************************************************/
 
-CalCoreBone *CalLoader::loadCoreBones(std::ifstream& file, const std::string& strFilename)
+CalCoreBone *CalLoader::loadCoreBones(std::ifstream& file, const char* strFilename)
 {
   if(!file)
   {
@@ -186,8 +186,8 @@ CalCoreBone *CalLoader::loadCoreBones(std::ifstream& file, const std::string& st
   }
 
   // read the name of the bone
-  std::string strName;
-  CalPlatform::readString(file, strName);
+  char strName[32];
+  CalPlatform::readString(file, strName, 32);
 
   // get the translation of the bone
   float tx, ty, tz;
@@ -295,7 +295,7 @@ CalCoreBone *CalLoader::loadCoreBones(std::ifstream& file, const std::string& st
   *         \li \b 0 if an error happened
   *****************************************************************************/
 
-CalCoreKeyframe *CalLoader::loadCoreKeyframe(std::ifstream& file, const std::string& strFilename)
+CalCoreKeyframe *CalLoader::loadCoreKeyframe(std::ifstream& file, const char* strFilename)
 {
   if(!file)
   {
@@ -364,11 +364,11 @@ CalCoreKeyframe *CalLoader::loadCoreKeyframe(std::ifstream& file, const std::str
   *         \li \b 0 if an error happend
   *****************************************************************************/
 
-CalCoreMaterial *CalLoader::loadCoreMaterial(const std::string& strFilename)
+CalCoreMaterial *CalLoader::loadCoreMaterial(const char* strFilename)
 {
   // open the file
   std::ifstream file;
-  file.open(strFilename.c_str(), std::ios::in | std::ios::binary);
+  file.open(strFilename, std::ios::in | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_NOT_FOUND, __FILE__, __LINE__, strFilename);
@@ -462,8 +462,7 @@ CalCoreMaterial *CalLoader::loadCoreMaterial(const std::string& strFilename)
     CalCoreMaterial::Map map;
 
     // read the filename of the map
-    std::string strName;
-    CalPlatform::readString(file, map.strFilename);
+    CalPlatform::readString(file, map.strFilename, 512);
 
     // initialize the user data
     map.userData = 0;
@@ -499,11 +498,11 @@ CalCoreMaterial *CalLoader::loadCoreMaterial(const std::string& strFilename)
   *         \li \b 0 if an error happend
   *****************************************************************************/
 
-CalCoreMesh *CalLoader::loadCoreMesh(const std::string& strFilename)
+CalCoreMesh *CalLoader::loadCoreMesh(const char* strFilename)
 {
   // open the file
   std::ifstream file;
-  file.open(strFilename.c_str(), std::ios::in | std::ios::binary);
+  file.open(strFilename, std::ios::in | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_NOT_FOUND, __FILE__, __LINE__, strFilename);
@@ -589,11 +588,11 @@ CalCoreMesh *CalLoader::loadCoreMesh(const std::string& strFilename)
   *         \li \b 0 if an error happend
   *****************************************************************************/
 
-CalCoreSkeleton *CalLoader::loadCoreSkeleton(const std::string& strFilename)
+CalCoreSkeleton *CalLoader::loadCoreSkeleton(const char* strFilename)
 {
   // open the file
   std::ifstream file;
-  file.open(strFilename.c_str(), std::ios::in | std::ios::binary);
+  file.open(strFilename, std::ios::in | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_NOT_FOUND, __FILE__, __LINE__, strFilename);
@@ -686,7 +685,7 @@ CalCoreSkeleton *CalLoader::loadCoreSkeleton(const std::string& strFilename)
   *         \li \b 0 if an error happend
   *****************************************************************************/
 
-CalCoreSubmesh *CalLoader::loadCoreSubmesh(std::ifstream& file, const std::string& strFilename)
+CalCoreSubmesh *CalLoader::loadCoreSubmesh(std::ifstream& file, const char* strFilename)
 {
   if(!file)
   {
@@ -923,7 +922,7 @@ CalCoreSubmesh *CalLoader::loadCoreSubmesh(std::ifstream& file, const std::strin
   *         \li \b 0 if an error happend
   *****************************************************************************/
 
-CalCoreTrack *CalLoader::loadCoreTrack(std::ifstream& file, const std::string& strFilename)
+CalCoreTrack *CalLoader::loadCoreTrack(std::ifstream& file, const char* strFilename)
 {
   if(!file)
   {

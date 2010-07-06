@@ -97,7 +97,7 @@ public:
   static bool readBytes(std::ifstream& file, void *pBuffer, int length);
   static bool readFloat(std::ifstream& file, float& value);
   static bool readInteger(std::ifstream& file, int& value);
-  static bool readString(std::ifstream& file, std::string& strValue);
+  static bool readString(std::ifstream& file, char* strValue, int length);
   static bool writeBytes(std::ofstream& file, const void *pBuffer, int length);
   static bool writeFloat(std::ofstream& file, float value);
   static bool writeInteger(std::ofstream& file, int value);

@@ -65,11 +65,11 @@ CalSaver::~CalSaver()
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreAnimation(const std::string& strFilename, CalCoreAnimation *pCoreAnimation)
+bool CalSaver::saveCoreAnimation(const char* strFilename, CalCoreAnimation *pCoreAnimation)
 {
   // open the file
   std::ofstream file;
-  file.open(strFilename.c_str(), std::ios::out | std::ios::binary);
+  file.open(strFilename, std::ios::out | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_CREATION_FAILED, __FILE__, __LINE__, strFilename);
@@ -138,7 +138,7 @@ bool CalSaver::saveCoreAnimation(const std::string& strFilename, CalCoreAnimatio
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreBones(std::ofstream& file, const std::string& strFilename, CalCoreBone *pCoreBone)
+bool CalSaver::saveCoreBones(std::ofstream& file, const char* strFilename, CalCoreBone *pCoreBone)
 {
   if(!file)
   {
@@ -227,7 +227,7 @@ bool CalSaver::saveCoreBones(std::ofstream& file, const std::string& strFilename
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreKeyframe(std::ofstream& file, const std::string& strFilename, CalCoreKeyframe *pCoreKeyframe)
+bool CalSaver::saveCoreKeyframe(std::ofstream& file, const char* strFilename, CalCoreKeyframe *pCoreKeyframe)
 {
   if(!file)
   {
@@ -276,11 +276,11 @@ bool CalSaver::saveCoreKeyframe(std::ofstream& file, const std::string& strFilen
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreMaterial(const std::string& strFilename, CalCoreMaterial *pCoreMaterial)
+bool CalSaver::saveCoreMaterial(const char* strFilename, CalCoreMaterial *pCoreMaterial)
 {
   // open the file
   std::ofstream file;
-  file.open(strFilename.c_str(), std::ios::out | std::ios::binary);
+  file.open(strFilename, std::ios::out | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_CREATION_FAILED, __FILE__, __LINE__, strFilename);
@@ -369,11 +369,11 @@ bool CalSaver::saveCoreMaterial(const std::string& strFilename, CalCoreMaterial 
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreMesh(const std::string& strFilename, CalCoreMesh *pCoreMesh)
+bool CalSaver::saveCoreMesh(const char* strFilename, CalCoreMesh *pCoreMesh)
 {
   // open the file
   std::ofstream file;
-  file.open(strFilename.c_str(), std::ios::out | std::ios::binary);
+  file.open(strFilename, std::ios::out | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_CREATION_FAILED, __FILE__, __LINE__, strFilename);
@@ -436,11 +436,11 @@ bool CalSaver::saveCoreMesh(const std::string& strFilename, CalCoreMesh *pCoreMe
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreSkeleton(const std::string& strFilename, CalCoreSkeleton *pCoreSkeleton)
+bool CalSaver::saveCoreSkeleton(const char* strFilename, CalCoreSkeleton *pCoreSkeleton)
 {
   // open the file
   std::ofstream file;
-  file.open(strFilename.c_str(), std::ios::out | std::ios::binary);
+  file.open(strFilename, std::ios::out | std::ios::binary);
   if(!file)
   {
     CalError::setLastError(CalError::FILE_CREATION_FAILED, __FILE__, __LINE__, strFilename);
@@ -500,7 +500,7 @@ bool CalSaver::saveCoreSkeleton(const std::string& strFilename, CalCoreSkeleton 
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreSubmesh(std::ofstream& file, const std::string& strFilename, CalCoreSubmesh *pCoreSubmesh)
+bool CalSaver::saveCoreSubmesh(std::ofstream& file, const char* strFilename, CalCoreSubmesh *pCoreSubmesh)
 {
   if(!file)
   {
@@ -673,7 +673,7 @@ bool CalSaver::saveCoreSubmesh(std::ofstream& file, const std::string& strFilena
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalSaver::saveCoreTrack(std::ofstream& file, const std::string& strFilename, CalCoreTrack *pCoreTrack)
+bool CalSaver::saveCoreTrack(std::ofstream& file, const char* strFilename, CalCoreTrack *pCoreTrack)
 {
   if(!file)
   {

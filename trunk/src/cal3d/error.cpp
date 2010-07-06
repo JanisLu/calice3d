@@ -23,9 +23,10 @@
 //****************************************************************************//
 
 CalError::Code CalError::m_lastErrorCode = CalError::OK;
-std::string CalError::m_strLastErrorFile;
+char* CalError::m_strLastErrorFile = 0;
 int CalError::m_lastErrorLine = -1;
-std::string CalError::m_strLastErrorText;
+char strLastErrorText[512];
+char* CalError::m_strLastErrorText = strLastErrorText;
 
  /*****************************************************************************/
 /** Constructs the error instance.
@@ -70,7 +71,7 @@ CalError::Code CalError::getLastErrorCode()
   * @return The description of the last error.
   *****************************************************************************/
 
-std::string CalError::getLastErrorDescription()
+char* CalError::getLastErrorDescription()
 {
   switch(m_lastErrorCode)
   {
@@ -146,7 +147,7 @@ std::string CalError::getLastErrorDescription()
   * @return The name of the file where the last error occured.
   *****************************************************************************/
 
-const std::string& CalError::getLastErrorFile()
+const char* CalError::getLastErrorFile()
 {
   return m_strLastErrorFile;
 }
@@ -173,7 +174,7 @@ int CalError::getLastErrorLine()
   * @return The supplementary text of the last error.
   *****************************************************************************/
 
-const std::string& CalError::getLastErrorText()
+const char* CalError::getLastErrorText()
 {
   return m_strLastErrorText;
 }
@@ -190,7 +191,7 @@ void CalError::printLastError()
   std::cout << "cal3d : " << getLastErrorDescription();
 
   // only print supplementary information if there is some
-  if(m_strLastErrorText.size() > 0)
+  if(m_strLastErrorText[0] != 0)
   {
     std::cout << " '" << m_strLastErrorText << "'";
   }
@@ -210,14 +211,18 @@ void CalError::printLastError()
   * @param strText The supplementary text of the last error.
   *****************************************************************************/
 
-void CalError::setLastError(Code code, const std::string& strFile, int line, const std::string& strText)
+void CalError::setLastError(Code code, char* strFile, int line, const char* strText)
 {
   if(code >= MAX_ERROR_CODE) code = INTERNAL;
 
   m_lastErrorCode = code;
   m_strLastErrorFile = strFile;
   m_lastErrorLine = line;
-  m_strLastErrorText = strText;
+  if (strText)
+	strncpy(m_strLastErrorText, strText, 512);
+  else
+    m_strLastErrorText[0] = 0;
+
 }
 
 //****************************************************************************//

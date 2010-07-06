@@ -132,9 +132,9 @@ int CalCoreModel::addCoreMesh(CalCoreMesh *pCoreMesh)
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreModel::create(const std::string& strName)
+bool CalCoreModel::create(const char* strName)
 {
-  m_strName = strName;
+  strncpy_s(m_strName, strName, 32);
 
   return true;
 }
@@ -204,7 +204,7 @@ void CalCoreModel::destroy()
     m_pCoreSkeleton = 0;
   }
 
-  m_strName.erase();
+  m_strName[0] = 0;
 }
 
  /*****************************************************************************/
@@ -398,7 +398,7 @@ Cal::UserData CalCoreModel::getUserData()
   *         \li \b -1 if an error happend
   *****************************************************************************/
 
-int CalCoreModel::loadCoreAnimation(const std::string& strFilename)
+int CalCoreModel::loadCoreAnimation(const char* strFilename)
 {
   // the core skeleton has to be loaded already
   if(m_pCoreSkeleton == 0)
@@ -438,7 +438,7 @@ int CalCoreModel::loadCoreAnimation(const std::string& strFilename)
   *         \li \b -1 if an error happend
   *****************************************************************************/
 
-int CalCoreModel::loadCoreMaterial(const std::string& strFilename)
+int CalCoreModel::loadCoreMaterial(const char* strFilename)
 {
   // the core skeleton has to be loaded already
   if(m_pCoreSkeleton == 0)
@@ -477,7 +477,7 @@ int CalCoreModel::loadCoreMaterial(const std::string& strFilename)
   *         \li \b -1 if an error happend
   *****************************************************************************/
 
-int CalCoreModel::loadCoreMesh(const std::string& strFilename)
+int CalCoreModel::loadCoreMesh(const char* strFilename)
 {
   // the core skeleton has to be loaded already
   if(m_pCoreSkeleton == 0)
@@ -517,7 +517,7 @@ int CalCoreModel::loadCoreMesh(const std::string& strFilename)
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreModel::loadCoreSkeleton(const std::string& strFilename)
+bool CalCoreModel::loadCoreSkeleton(const char* strFilename)
 {
   // destroy the current core skeleton
   if(m_pCoreSkeleton != 0)
@@ -547,7 +547,7 @@ bool CalCoreModel::loadCoreSkeleton(const std::string& strFilename)
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreModel::saveCoreAnimation(const std::string& strFilename, int coreAnimationId)
+bool CalCoreModel::saveCoreAnimation(const char* strFilename, int coreAnimationId)
 {
   // check if the core animation id is valid
   if((coreAnimationId < 0) || (coreAnimationId >= (int)m_vectorCoreAnimation.size()))
@@ -579,7 +579,7 @@ bool CalCoreModel::saveCoreAnimation(const std::string& strFilename, int coreAni
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreModel::saveCoreMaterial(const std::string& strFilename, int coreMaterialId)
+bool CalCoreModel::saveCoreMaterial(const char* strFilename, int coreMaterialId)
 {
   // check if the core material id is valid
   if((coreMaterialId < 0) || (coreMaterialId >= (int)m_vectorCoreMaterial.size()))
@@ -611,7 +611,7 @@ bool CalCoreModel::saveCoreMaterial(const std::string& strFilename, int coreMate
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreModel::saveCoreMesh(const std::string& strFilename, int coreMeshId)
+bool CalCoreModel::saveCoreMesh(const char* strFilename, int coreMeshId)
 {
   // check if the core mesh id is valid
   if((coreMeshId < 0) || (coreMeshId >= (int)m_vectorCoreMesh.size()))
@@ -642,7 +642,7 @@ bool CalCoreModel::saveCoreMesh(const std::string& strFilename, int coreMeshId)
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreModel::saveCoreSkeleton(const std::string& strFilename)
+bool CalCoreModel::saveCoreSkeleton(const char* strFilename)
 {
   // check if we have a core skeleton in this code model
   if(m_pCoreSkeleton == 0)

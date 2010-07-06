@@ -116,9 +116,9 @@ void CalCoreBone::calculateState()
   *         \li \b false if an error happend
   *****************************************************************************/
 
-bool CalCoreBone::create(const std::string& strName)
+bool CalCoreBone::create(const char* strName)
 {
-  m_strName = strName;
+  strncpy(m_strName, strName, 32);
 
   return true;
 }
@@ -136,7 +136,7 @@ void CalCoreBone::destroy()
   m_arrayChildId.clear();
 
   m_parentId = -1;
-  m_strName.erase();
+  m_strName[0] = 0;
 }
 
  /*****************************************************************************/
@@ -161,7 +161,7 @@ std::vector<int>& CalCoreBone::getChildIds()
   * @return The name as string.
   *****************************************************************************/
 
-const std::string& CalCoreBone::getName()
+const char* CalCoreBone::getName()
 {
   return m_strName;
 }
