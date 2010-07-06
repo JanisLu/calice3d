@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calice3D", "calice3d.vcproj", "{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d_miniviewer_d3d", "samples\miniviewer_d3d\cal3d_miniviewer_d3d.vcproj", "{3244DAD0-D0A6-49D2-A84C-2471CA768520}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F} = {B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Hybrid|Win32 = Hybrid|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Debug|Win32.Build.0 = Debug|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Hybrid|Win32.ActiveCfg = Release|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Hybrid|Win32.Build.0 = Release|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Release|Win32.ActiveCfg = Release|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Release|Win32.Build.0 = Release|Win32
+		{3244DAD0-D0A6-49D2-A84C-2471CA768520}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3244DAD0-D0A6-49D2-A84C-2471CA768520}.Debug|Win32.Build.0 = Debug|Win32
+		{3244DAD0-D0A6-49D2-A84C-2471CA768520}.Hybrid|Win32.ActiveCfg = Hybrid|Win32
+		{3244DAD0-D0A6-49D2-A84C-2471CA768520}.Hybrid|Win32.Build.0 = Hybrid|Win32
+		{3244DAD0-D0A6-49D2-A84C-2471CA768520}.Release|Win32.ActiveCfg = Release|Win32
+		{3244DAD0-D0A6-49D2-A84C-2471CA768520}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
