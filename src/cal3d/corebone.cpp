@@ -118,7 +118,7 @@ void CalCoreBone::calculateState()
 
 bool CalCoreBone::create(const char* strName)
 {
-  strncpy(m_strName, strName, 32);
+  strncpy_s(m_strName, strName, 32);
 
   return true;
 }
