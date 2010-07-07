@@ -77,7 +77,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(NOINHERIT)"
-				OutputFile=".\Debug/$(ProjectName).dll"
+				OutputFile="bin/Debug/$(ProjectName).dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -175,7 +175,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(NOINHERIT)"
-				OutputFile=".\Release/$(ProjectName).dll"
+				OutputFile="bin/Release/$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile=".\Release/$(ProjectName).pdb"

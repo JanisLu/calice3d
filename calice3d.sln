@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calice3D", "calice3d.vcproj", "{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d_miniviewer_d3d", "samples\miniviewer_d3d\cal3d_miniviewer_d3d.vcproj", "{3244DAD0-D0A6-49D2-A84C-2471CA768520}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "miniviewer_d3d9", "samples\miniviewer_d3d9\miniviewer_d3d9.vcproj", "{3244DAD0-D0A6-49D2-A84C-2471CA768520}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F} = {B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}
 	EndProjectSection
