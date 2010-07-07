@@ -102,14 +102,21 @@ int CalPhysique::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, i
 	// get the vertex
 	if (pSubmesh->hasInternalData())
 	{
-	  vPosition = pSubmesh->getVectorVertex()[vertexId].position;
-	  vNormal = pSubmesh->getVectorVertex()[vertexId].normal;
+      // get the pgysical property of the vertex
+      if (vectorPhysicalProperty[vertexId].weight == 0.0f)
+      {
+        vPosition = pSubmesh->getCoreSubmesh()->getVectorVertex()[vertexId].position;
+      }
+      else
+      {
+        vPosition = pSubmesh->getVectorVertex()[vertexId].position;
+      }
 	}
 	else
 	{
       vPosition = pSubmesh->getCoreSubmesh()->getVectorVertex()[vertexId].position;
-      vNormal = pSubmesh->getCoreSubmesh()->getVectorVertex()[vertexId].normal;
 	}
+	vNormal = pSubmesh->getCoreSubmesh()->getVectorVertex()[vertexId].normal;
 
     // initialize vertex
     float x, y, z;
@@ -123,16 +130,16 @@ int CalPhysique::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, i
 	ny = 0.0f;
 	nz = 0.0f;
 
-	if (pSubmesh->hasInternalData())
-	{
-		x = vPosition.x;
-		y = vPosition.y;
-		z = vPosition.z;
-		nx = vNormal.x;
-		ny = vNormal.y;
-		nz = vNormal.z;
-	}
-	else
+	//if (pSubmesh->hasInternalData())
+	//{
+	//	x = vPosition.x;
+	//	y = vPosition.y;
+	//	z = vPosition.z;
+	//	nx = vNormal.x;
+	//	ny = vNormal.y;
+	//	nz = vNormal.z;
+	//}
+	//else
 	{
       // blend together all vertex influences
 	  CalCoreSubmesh::Vertex &vertex = pSubmesh->getCoreSubmesh()->getVectorVertex()[vertexId];
