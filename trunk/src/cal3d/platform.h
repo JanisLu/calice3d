@@ -20,6 +20,10 @@
 #pragma warning(disable : 4786)
 #endif
 
+#if defined(_WIN32) && defined(_MSC_VER)
+#pragma warning(disable : 4530)
+#endif
+
 //****************************************************************************//
 // Dynamic library export setup                                               //
 //****************************************************************************//
