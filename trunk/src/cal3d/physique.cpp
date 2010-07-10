@@ -165,7 +165,7 @@ int CalPhysique::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, i
 		  z += influence.weight * v.z;
 	    }
 
-	    if (iVertexFormat & VERTEX_NORMAL)
+	    if (iVertexFormat & VERTEX_NORMAL && influenceId == 0)
 	    {
           // transform normal with current state of the bone
 		  CalVector v(vNormal);
