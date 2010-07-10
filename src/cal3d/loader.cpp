@@ -816,11 +816,18 @@ CalCoreSubmesh *CalLoader::loadCoreSubmesh(std::ifstream& file, const char* strF
 
     // load all influences of the vertex
     int influenceId;
+	float firstWeight = 1.0f;
     for(influenceId = 0; influenceId < influenceCount; influenceId++)
     {
       // load data of the influence
       CalPlatform::readInteger(file, vertex.vectorInfluence[influenceId].boneId),
       CalPlatform::readFloat(file, vertex.vectorInfluence[influenceId].weight);
+	  if (influenceId == 0)
+		  firstWeight = vertex.vectorInfluence[influenceId].weight;
+
+	  // influence nned to be ordered !
+	  // because we'll apply transformation on normal only with the first influence
+	  assert(vertex.vectorInfluence[influenceId].weight <= firstWeight);
 
       // check if an error happend
       if(!file)
