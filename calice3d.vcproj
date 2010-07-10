@@ -619,26 +619,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="src\cal3d\physique.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="src\cal3d\platform.cpp"
 				>
 				<FileConfiguration
@@ -737,6 +717,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\src\cal3d\skiner.cpp"
+				>
 			</File>
 			<File
 				RelativePath="src\cal3d\springsystem.cpp"
@@ -884,10 +868,6 @@
 				>
 			</File>
 			<File
-				RelativePath="src\cal3d\physique.h"
-				>
-			</File>
-			<File
 				RelativePath="src\cal3d\platform.h"
 				>
 			</File>
@@ -909,6 +889,10 @@
 			</File>
 			<File
 				RelativePath="src\cal3d\skeleton.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cal3d\skiner.h"
 				>
 			</File>
 			<File

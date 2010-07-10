@@ -27,7 +27,7 @@
 #include "bone.h"
 #include "corematerial.h"
 #include "coresubmesh.h"
-#include "physique.h"
+#include "skiner.h"
 
  /*****************************************************************************/
 /** Constructs the renderer instance.
@@ -406,7 +406,7 @@ int CalRenderer::getVertexCount()
 int CalRenderer::getVertices(void *pVertexBuffer, int iVertexFormat)
 {
   // submesh does not handle the vertex data internally, so let the physique calculate it now
-  return m_pModel->getPhysique()->calculateVertices(m_pSelectedSubmesh, (float*)pVertexBuffer, iVertexFormat);
+  return m_pModel->getSkiner()->calculateVertices(m_pSelectedSubmesh, (float*)pVertexBuffer, iVertexFormat);
 }
 
  /*****************************************************************************/

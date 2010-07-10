@@ -33,7 +33,7 @@
 #include "mesh.h"
 #include "mixer.h"
 #include "model.h"
-#include "physique.h"
+#include "skiner.h"
 #include "quaternion.h"
 #include "renderer.h"
 #include "saver.h"

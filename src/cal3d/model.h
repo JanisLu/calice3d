@@ -24,7 +24,7 @@
 class CalCoreModel;
 class CalSkeleton;
 class CalMixer;
-class CalPhysique;
+class CalSkiner;
 class CalSpringSystem;
 class CalRenderer;
 class CalMesh;
@@ -44,7 +44,7 @@ protected:
   CalCoreModel *m_pCoreModel;
   CalSkeleton *m_pSkeleton;
   CalMixer *m_pMixer;
-  CalPhysique *m_pPhysique;
+  CalSkiner *m_pSkiner;
   CalSpringSystem *m_pSpringSystem;
   CalRenderer *m_pRenderer;
   Cal::UserData m_userData;
@@ -64,7 +64,7 @@ public:
   CalCoreModel *getCoreModel();
   CalMesh *getMesh(int coreMeshId);
   CalMixer *getMixer();
-  CalPhysique *getPhysique();
+  CalSkiner *getSkiner();
   CalRenderer *getRenderer();
   CalSkeleton *getSkeleton();
   CalSpringSystem *getSpringSystem();
