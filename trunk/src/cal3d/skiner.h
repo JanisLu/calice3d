@@ -1,5 +1,5 @@
 //****************************************************************************//
-// physique.h                                                                 //
+// skiner.h                                                                 //
 // Copyright (C) 2001, 2002 Bruno 'Beosil' Heidelberger                       //
 //****************************************************************************//
 // This library is free software; you can redistribute it and/or modify it    //
@@ -8,8 +8,8 @@
 // your option) any later version.                                            //
 //****************************************************************************//
 
-#ifndef CAL_PHYSIQUE_H
-#define CAL_PHYSIQUE_H
+#ifndef CAL_SKINER_H
+#define CAL_SKINER_H
 
 //****************************************************************************//
 // Includes                                                                   //
@@ -29,10 +29,10 @@ class CalSubmesh;
 //****************************************************************************//
 
  /*****************************************************************************/
-/** The physique class.
+/** The skiner class.
   *****************************************************************************/
 
-class CAL3D_API CalPhysique
+class CAL3D_API CalSkiner
 {
 // member variables
 public:
@@ -40,12 +40,11 @@ public:
 
 // constructors/destructor
 public:
-  CalPhysique();
-  virtual ~CalPhysique();
+  CalSkiner();
+  virtual ~CalSkiner();
 
 // member functions	
 public:
-  int calculateNormals(CalSubmesh *pSubmesh, float *pNormalBuffer);
   int calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, int iVertexFormat);
   bool create(CalModel *pModel);
   void destroy();

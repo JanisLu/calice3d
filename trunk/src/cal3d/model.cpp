@@ -27,7 +27,7 @@
 #include "coremesh.h"
 #include "coresubmesh.h"
 #include "mesh.h"
-#include "physique.h"
+#include "skiner.h"
 #include "springsystem.h"
 
  /*****************************************************************************/
@@ -41,7 +41,7 @@ CalModel::CalModel()
   m_pCoreModel = 0;
   m_pSkeleton = 0;
   m_pMixer = 0;
-  m_pPhysique = 0;
+  m_pSkiner = 0;
   m_pSpringSystem = 0;
   m_pRenderer = 0;
   m_userData = 0;
@@ -184,9 +184,8 @@ bool CalModel::create(CalCoreModel *pCoreModel)
   m_pMixer = pMixer;
 
   // allocate a new physqiue instance
-  CalPhysique *pPhysique;
-  pPhysique = new CalPhysique();
-  if(pPhysique == 0)
+  CalSkiner *pSkiner = new CalSkiner();
+  if(pSkiner == 0)
   {
     CalError::setLastError(CalError::MEMORY_ALLOCATION_FAILED, __FILE__, __LINE__);
     m_pMixer->destroy();
@@ -197,17 +196,17 @@ bool CalModel::create(CalCoreModel *pCoreModel)
   }
 
   // create the physique from this model
-  if(!pPhysique->create(this))
+  if(!pSkiner->create(this))
   {
     m_pMixer->destroy();
     delete m_pMixer;
     m_pSkeleton->destroy();
     delete m_pSkeleton;
-    delete pPhysique;
+    delete pSkiner;
     return false;
   }
 
-  m_pPhysique = pPhysique;
+  m_pSkiner = pSkiner;
 
   // allocate a new spring system instance
   CalSpringSystem *pSpringSystem;
@@ -215,8 +214,8 @@ bool CalModel::create(CalCoreModel *pCoreModel)
   if(pSpringSystem == 0)
   {
     CalError::setLastError(CalError::MEMORY_ALLOCATION_FAILED, __FILE__, __LINE__);
-    m_pPhysique->destroy();
-    delete m_pPhysique;
+    m_pSkiner->destroy();
+    delete m_pSkiner;
     m_pMixer->destroy();
     delete m_pMixer;
     m_pSkeleton->destroy();
@@ -227,8 +226,8 @@ bool CalModel::create(CalCoreModel *pCoreModel)
   // create the spring system from this model
   if(!pSpringSystem->create(this))
   {
-    m_pPhysique->destroy();
-    delete m_pPhysique;
+    m_pSkiner->destroy();
+    delete m_pSkiner;
     m_pMixer->destroy();
     delete m_pMixer;
     m_pSkeleton->destroy();
@@ -247,8 +246,8 @@ bool CalModel::create(CalCoreModel *pCoreModel)
     CalError::setLastError(CalError::MEMORY_ALLOCATION_FAILED, __FILE__, __LINE__);
     m_pSpringSystem->destroy();
     delete m_pSpringSystem;
-    m_pPhysique->destroy();
-    delete m_pPhysique;
+    m_pSkiner->destroy();
+    delete m_pSkiner;
     m_pMixer->destroy();
     delete m_pMixer;
     m_pSkeleton->destroy();
@@ -261,8 +260,8 @@ bool CalModel::create(CalCoreModel *pCoreModel)
   {
     m_pSpringSystem->destroy();
     delete m_pSpringSystem;
-    m_pPhysique->destroy();
-    delete m_pPhysique;
+    m_pSkiner->destroy();
+    delete m_pSkiner;
     m_pMixer->destroy();
     delete m_pMixer;
     m_pSkeleton->destroy();
@@ -314,11 +313,11 @@ void CalModel::destroy()
   }
 
   // destroy the physique instance
-  if(m_pPhysique != 0)
+  if(m_pSkiner != 0)
   {
-    m_pPhysique->destroy();
-    delete m_pPhysique;
-    m_pPhysique = 0;
+    m_pSkiner->destroy();
+    delete m_pSkiner;
+    m_pSkiner = 0;
   }
 
   // destroy the mixer instance
@@ -463,16 +462,16 @@ CalMixer *CalModel::getMixer()
  /*****************************************************************************/
 /** Provides access to the physique.
   *
-  * This function returns the physique.
+  * This function returns the skiner.
   *
   * @return One of the following values:
   *         \li a pointer to the physique
-  *         \li \b 0 if an error happend
+  *         \li \b 0 if an error happened
   *****************************************************************************/
 
-CalPhysique *CalModel::getPhysique()
+CalSkiner *CalModel::getSkiner()
 {
-  return m_pPhysique;
+  return m_pSkiner;
 }
 
  /*****************************************************************************/
@@ -611,7 +610,7 @@ void CalModel::update(float deltaTime)
   m_pMixer->updateAnimation(deltaTime);
   m_pMixer->updateSkeleton();
   // m_pMorpher->update(...);
-  m_pPhysique->update();
+  m_pSkiner->update();
   m_pSpringSystem->update(deltaTime);
 }
 
