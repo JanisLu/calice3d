@@ -19,6 +19,8 @@
 #include "vector.h"
 #include "quaternion.h"
 
+#define CAL3D_MAX_BONE_NAME 512
+
 //****************************************************************************//
 // Forward declarations                                                       //
 //****************************************************************************//
@@ -39,7 +41,7 @@ class CAL3D_API CalCoreBone
   friend class CalLoader;
 // member variables
 protected:
-  char m_strName[32];
+  char m_strName[CAL3D_MAX_BONE_NAME];
   CalCoreSkeleton *m_pCoreSkeleton;
   int m_parentId;
   std::vector<int> m_arrayChildId;
