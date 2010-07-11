@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d_max_exporter", "cal3d_max_exporter\cal3d_max_exporter.vcproj", "{65582846-23E0-4430-8F8B-ED4D2B5D5190}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F} = {B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calice3D", "..\..\calice3d.vcproj", "{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65582846-23E0-4430-8F8B-ED4D2B5D5190}.Debug|Win32.ActiveCfg = Debug|Win32
+		{65582846-23E0-4430-8F8B-ED4D2B5D5190}.Debug|Win32.Build.0 = Debug|Win32
+		{65582846-23E0-4430-8F8B-ED4D2B5D5190}.Release|Win32.ActiveCfg = Release|Win32
+		{65582846-23E0-4430-8F8B-ED4D2B5D5190}.Release|Win32.Build.0 = Release|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Debug|Win32.Build.0 = Debug|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Release|Win32.ActiveCfg = Release|Win32
+		{B908FAA7-1C4A-4EEA-BF01-AAE4F687536F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
