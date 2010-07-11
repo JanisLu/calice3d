@@ -182,8 +182,12 @@ CalCoreBone *CalLoader::loadCoreBones(std::ifstream& file, const char* strFilena
   }
 
   // read the name of the bone
-  char strName[32];
-  CalPlatform::readString(file, strName, 32);
+  char strName[CAL3D_MAX_BONE_NAME];
+  if (CalPlatform::readString(file, strName, CAL3D_MAX_BONE_NAME) == false)
+  {
+	  CalError::setLastError(CalError::INVALID_FILE_FORMAT, __FILE__, __LINE__, strFilename);
+	  return 0;
+  }
 
   // get the translation of the bone
   float tx, ty, tz;
