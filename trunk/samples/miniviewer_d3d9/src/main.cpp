@@ -13,10 +13,6 @@
 #pragma warning(disable : 4786)
 #endif
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 
 //----------------------------------------------------------------------------//
 // Includes                                                                   //
