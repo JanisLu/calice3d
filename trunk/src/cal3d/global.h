@@ -15,11 +15,6 @@
 // Includes                                                                   //
 //****************************************************************************//
 
-// autoconf/automake includes
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 // platform dependent includes
 #include "platform.h"
 
