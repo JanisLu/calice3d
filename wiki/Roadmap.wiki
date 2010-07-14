@@ -6,9 +6,11 @@
  * Core: Vertex format compliant to GPU card recommendation (interleaved)
  * Core: Remove all dependencies to STL
  * Core: First pass of performance improvement
+ * Export/Core: Animation scaling
 
 ==0.2==
  * Exporter: FBX to Cal3D converter
+ * Exporter: save/load export config for each exported file
  * Exporter: NVTriStip optimization
  * Core: SSE optimizations
  * Core: GPU skinning
