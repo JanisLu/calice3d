@@ -43,6 +43,7 @@ public:
 	virtual CBaseMesh *GetMesh(CBaseNode *pNode) = 0;
 	virtual CBaseNode *GetNode(const std::string& strName) = 0;
 	virtual CBaseNode *GetSelectedNode(int nodeId) = 0;
+	virtual CBaseNode *GetRootNode() = 0;
 	virtual int GetSelectedNodeCount() = 0;
 	virtual int GetStartFrame() = 0;
 	virtual void GetTranslationAndRotation(CBaseNode *pNode, CBaseNode *pParentNode, float time, CalVector& translation, CalQuaternion& rotation) = 0;

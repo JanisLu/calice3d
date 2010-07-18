@@ -68,6 +68,7 @@ public:
 	CBaseNode *GetNode(const std::string& strName);
 	int GetSelectedNodeCount();
 	CBaseNode *GetSelectedNode(int nodeId);
+	CBaseNode *GetRootNode();
 	int GetStartFrame();
 	void GetTranslationAndRotation(CBaseNode *pNode, CBaseNode *pParentNode, float time, CalVector& translation, CalQuaternion& rotation);
 	void GetTranslationAndRotationBoneSpace(CBaseNode *pNode, float time, CalVector& translation, CalQuaternion& rotation);

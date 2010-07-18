@@ -346,6 +346,31 @@ CBaseNode *CMaxInterface::GetNode(const std::string& strName)
 }
 
 //----------------------------------------------------------------------------//
+// Get the root node of the scene                                           //
+//----------------------------------------------------------------------------//
+
+CBaseNode *CMaxInterface::GetRootNode()
+{
+	// allocate a new max node instance
+	CMaxNode *pNode;
+	pNode = new CMaxNode();
+	if(pNode == 0)
+	{
+		theExporter.SetLastError("Memory allocation failed.", __FILE__, __LINE__);
+		return 0;
+	}
+
+	// create the max node
+	if(!pNode->Create(m_pInterface->GetRootNode()))
+	{
+		delete pNode;
+		return 0;
+	}
+
+	return pNode;
+}
+
+//----------------------------------------------------------------------------//
 // Get the transformation matrix of a given max node                          //
 //----------------------------------------------------------------------------//
 
