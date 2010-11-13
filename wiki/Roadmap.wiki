@@ -1,12 +1,10 @@
 =Roadmap=
 
 ==0.1==
- * Import Cal3D 0.7 + some fixes from Cal3D project
- * Exporter: Merge Material, Skeleton in the Mesh file.
- * Core: Vertex format compliant to GPU card recommendation (interleaved)
+ * Import Cal3D 0.7 + some fixes from Cal3D project *[Done]*
+ * Core: Vertex format compliant to GPU card recommendation (interleaved) *[Done]*
  * Core: Remove all dependencies to STL
- * Core: First pass of performance improvement
- * Export/Core: Animation scaling
+ * Core: First pass of performance improvement *[Done]*
 
 ==0.2==
  * Exporter: FBX to Cal3D converter
@@ -14,3 +12,5 @@
  * Exporter: NVTriStip optimization
  * Core: SSE optimizations
  * Core: GPU skinning
+ * Export/Core: Animation scaling
+ * Exporter: Merge Material, Skeleton in the Mesh file.
