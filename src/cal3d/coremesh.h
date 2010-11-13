@@ -37,7 +37,7 @@ class CAL3D_API CalCoreMesh
   friend class CalLoader;
 // member variables
 protected:
-  std::vector<CalCoreSubmesh *> m_vectorCoreSubmesh;
+  rde::vector<CalCoreSubmesh *> m_vectorCoreSubmesh;
 
 // constructors/destructor
 public:
@@ -51,7 +51,7 @@ public:
   void destroy();
   CalCoreSubmesh *getCoreSubmesh(int id);
   int getCoreSubmeshCount();
-  std::vector<CalCoreSubmesh *>& getVectorCoreSubmesh();
+  rde::vector<CalCoreSubmesh *>& getVectorCoreSubmesh();
 };
 
 #endif

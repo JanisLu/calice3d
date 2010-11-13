@@ -52,7 +52,7 @@ CalCoreTrack::~CalCoreTrack()
 
 bool CalCoreTrack::addCoreKeyframe(CalCoreKeyframe *pCoreKeyframe)
 {
-  m_mapCoreKeyframe.insert(std::make_pair(pCoreKeyframe->getTime(), pCoreKeyframe));
+  m_mapCoreKeyframe.insert(rde::make_pair(pCoreKeyframe->getTime(), pCoreKeyframe));
 
   return true;
 }
@@ -82,7 +82,7 @@ bool CalCoreTrack::create()
 void CalCoreTrack::destroy()
 {
   // destroy all core keyframes
-  std::map<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframe;
+  rde::sorted_vector<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframe;
 
   for(iteratorCoreKeyframe = m_mapCoreKeyframe.begin(); iteratorCoreKeyframe != m_mapCoreKeyframe.end(); ++iteratorCoreKeyframe)
   {
@@ -123,7 +123,7 @@ int CalCoreTrack::getCoreBoneId()
   * @return A reference to the core keyframe map.
   *****************************************************************************/
 
-std::map<float, CalCoreKeyframe *>& CalCoreTrack::getMapCoreKeyframe()
+rde::sorted_vector<float, CalCoreKeyframe *>& CalCoreTrack::getMapCoreKeyframe()
 {
   return m_mapCoreKeyframe;
 }
@@ -147,8 +147,8 @@ std::map<float, CalCoreKeyframe *>& CalCoreTrack::getMapCoreKeyframe()
 
 bool CalCoreTrack::getState(float time, CalVector& translation, CalQuaternion& rotation)
 {
-  std::map<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframeBefore;
-  std::map<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframeAfter;
+  rde::sorted_vector<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframeBefore;
+  rde::sorted_vector<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframeAfter;
 
   // get the keyframe after the requested time
   iteratorCoreKeyframeAfter = m_mapCoreKeyframe.upper_bound(time);

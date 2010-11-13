@@ -125,7 +125,7 @@ void CalBone::calculateState()
   m_rotationBoneSpace *= m_rotationAbsolute;
 
   // calculate all child bones
-  std::vector<int>::iterator iteratorChildId;
+  rde::vector<int>::iterator iteratorChildId;
   for(iteratorChildId = m_pCoreBone->getChildIds().begin(); iteratorChildId != m_pCoreBone->getChildIds().end(); ++iteratorChildId)
   {
     m_pSkeleton->getBone(*iteratorChildId)->calculateState();

@@ -44,7 +44,7 @@ protected:
   char m_strName[CAL3D_MAX_BONE_NAME];
   CalCoreSkeleton *m_pCoreSkeleton;
   int m_parentId;
-  std::vector<int> m_arrayChildId;
+  rde::vector<int> m_arrayChildId;
   CalVector m_translation;
   CalQuaternion m_rotation;
   CalVector m_translationAbsolute;
@@ -64,7 +64,7 @@ public:
   void calculateState();
   bool create(const char* strName);
   void destroy();
-  std::vector<int>& getChildIds();
+  rde::vector<int>& getChildIds();
   const char* getName();
   int getParentId();
   const CalQuaternion& getRotation();

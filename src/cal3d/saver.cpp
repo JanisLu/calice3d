@@ -94,7 +94,7 @@ bool CalSaver::saveCoreAnimation(const char* strFilename, CalCoreAnimation *pCor
   }
 
   // get core track list
-  std::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
+  rde::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
 
   // write the number of tracks
   if(!CalPlatform::writeInteger(file, vectorCoreTrack.size()))
@@ -104,7 +104,7 @@ bool CalSaver::saveCoreAnimation(const char* strFilename, CalCoreAnimation *pCor
   }
 
   // write all core bones
-  std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+  rde::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
   for(iteratorCoreTrack = vectorCoreTrack.begin(); iteratorCoreTrack != vectorCoreTrack.end(); ++iteratorCoreTrack)
   {
     // save core track
@@ -183,7 +183,7 @@ bool CalSaver::saveCoreBones(std::ofstream& file, const char* strFilename, CalCo
   }
 
   // get children list
-  std::vector<int>& arrayChildId = pCoreBone->getChildIds();
+  rde::vector<int>& arrayChildId = pCoreBone->getChildIds();
 
   // write the number of children
   if(!CalPlatform::writeInteger(file, arrayChildId.size()))
@@ -193,7 +193,7 @@ bool CalSaver::saveCoreBones(std::ofstream& file, const char* strFilename, CalCo
   }
 
   // write all children ids
-  std::vector<int>::iterator iteratorChildId;
+  rde::vector<int>::iterator iteratorChildId;
   for(iteratorChildId = arrayChildId.begin(); iteratorChildId != arrayChildId.end(); ++iteratorChildId)
   {
     // write the child id
@@ -322,7 +322,7 @@ bool CalSaver::saveCoreMaterial(const char* strFilename, CalCoreMaterial *pCoreM
   }
 
   // get the map vector
-  std::vector<CalCoreMaterial::Map>& vectorMap = pCoreMaterial->getVectorMap();
+  rde::vector<CalCoreMaterial::Map>& vectorMap = pCoreMaterial->getVectorMap();
 
   // write the number of maps
   if(!CalPlatform::writeInteger(file, vectorMap.size()))
@@ -390,7 +390,7 @@ bool CalSaver::saveCoreMesh(const char* strFilename, CalCoreMesh *pCoreMesh)
   }
 
   // get the submesh vector
-  std::vector<CalCoreSubmesh *>& vectorCoreSubmesh = pCoreMesh->getVectorCoreSubmesh();
+  rde::vector<CalCoreSubmesh *>& vectorCoreSubmesh = pCoreMesh->getVectorCoreSubmesh();
 
   // write the number of submeshes
   if(!CalPlatform::writeInteger(file, vectorCoreSubmesh.size()))
@@ -511,10 +511,10 @@ bool CalSaver::saveCoreSubmesh(std::ofstream& file, const char* strFilename, Cal
   }
 
   // get the vertex, face, physical property and spring vector
-  std::vector<CalCoreSubmesh::Vertex>& vectorVertex = pCoreSubmesh->getVectorVertex();
-  std::vector<CalCoreSubmesh::Face>& vectorFace = pCoreSubmesh->getVectorFace();
-  std::vector<CalCoreSubmesh::PhysicalProperty>& vectorPhysicalProperty = pCoreSubmesh->getVectorPhysicalProperty();
-  std::vector<CalCoreSubmesh::Spring>& vectorSpring = pCoreSubmesh->getVectorSpring();
+  rde::vector<CalCoreSubmesh::Vertex>& vectorVertex = pCoreSubmesh->getVectorVertex();
+  rde::vector<CalCoreSubmesh::Face>& vectorFace = pCoreSubmesh->getVectorFace();
+  rde::vector<CalCoreSubmesh::PhysicalProperty>& vectorPhysicalProperty = pCoreSubmesh->getVectorPhysicalProperty();
+  rde::vector<CalCoreSubmesh::Spring>& vectorSpring = pCoreSubmesh->getVectorSpring();
 
   // write the number of vertices, faces, level-of-details and springs
   CalPlatform::writeInteger(file, vectorVertex.size());
@@ -523,7 +523,7 @@ bool CalSaver::saveCoreSubmesh(std::ofstream& file, const char* strFilename, Cal
   CalPlatform::writeInteger(file, pCoreSubmesh->getSpringCount());
 
   // get the texture coordinate vector vector
-  std::vector<std::vector<CalCoreSubmesh::TextureCoordinate> >& vectorvectorTextureCoordinate = pCoreSubmesh->getVectorVectorTextureCoordinate();
+  rde::vector<rde::vector<CalCoreSubmesh::TextureCoordinate> >& vectorvectorTextureCoordinate = pCoreSubmesh->getVectorVectorTextureCoordinate();
 
   // write the number of texture coordinates per vertex
   CalPlatform::writeInteger(file, vectorvectorTextureCoordinate.size());
@@ -684,7 +684,7 @@ bool CalSaver::saveCoreTrack(std::ofstream& file, const char* strFilename, CalCo
   }
 
   // get core keyframe map
-  std::map<float, CalCoreKeyframe *>& mapCoreKeyframe = pCoreTrack->getMapCoreKeyframe();
+  rde::sorted_vector<float, CalCoreKeyframe *>& mapCoreKeyframe = pCoreTrack->getMapCoreKeyframe();
 
   // read the number of keyframes
   if(!CalPlatform::writeInteger(file, mapCoreKeyframe.size()))
@@ -694,7 +694,7 @@ bool CalSaver::saveCoreTrack(std::ofstream& file, const char* strFilename, CalCo
   }
 
   // save all core keyframes
-  std::map<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframe;
+  rde::sorted_vector<float, CalCoreKeyframe *>::iterator iteratorCoreKeyframe;
   for(iteratorCoreKeyframe = mapCoreKeyframe.begin(); iteratorCoreKeyframe != mapCoreKeyframe.end(); ++iteratorCoreKeyframe)
   {
     // save the core keyframe

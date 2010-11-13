@@ -85,7 +85,7 @@ bool CalCoreMesh::create()
 void CalCoreMesh::destroy()
 {
   // destroy all core submeshes
-  std::vector<CalCoreSubmesh *>::iterator iteratorCoreSubmesh;
+  rde::vector<CalCoreSubmesh *>::iterator iteratorCoreSubmesh;
   for(iteratorCoreSubmesh = m_vectorCoreSubmesh.begin(); iteratorCoreSubmesh != m_vectorCoreSubmesh.end(); ++iteratorCoreSubmesh)
   {
     (*iteratorCoreSubmesh)->destroy();
@@ -141,7 +141,7 @@ int CalCoreMesh::getCoreSubmeshCount()
   * @return A reference to the core submesh vector.
   *****************************************************************************/
 
-std::vector<CalCoreSubmesh *>& CalCoreMesh::getVectorCoreSubmesh()
+rde::vector<CalCoreSubmesh *>& CalCoreMesh::getVectorCoreSubmesh()
 {
   return m_vectorCoreSubmesh;
 }

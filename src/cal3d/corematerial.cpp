@@ -199,7 +199,7 @@ Cal::UserData CalCoreMaterial::getUserData()
   * @return A reference to the map vector.
   *****************************************************************************/
 
-std::vector<CalCoreMaterial::Map>& CalCoreMaterial::getVectorMap()
+rde::vector<CalCoreMaterial::Map>& CalCoreMaterial::getVectorMap()
 {
   return m_vectorMap;
 }

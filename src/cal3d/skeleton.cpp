@@ -50,9 +50,9 @@ CalSkeleton::~CalSkeleton()
 void CalSkeleton::calculateState()
 {
   // calculate all bone states of the skeleton
-  std::vector<int>& vectorRootCoreBoneId = m_pCoreSkeleton->getVectorRootCoreBoneId();
+  rde::vector<int>& vectorRootCoreBoneId = m_pCoreSkeleton->getVectorRootCoreBoneId();
 
-  std::vector<int>::iterator iteratorRootBoneId;
+  rde::vector<int>::iterator iteratorRootBoneId;
   for(iteratorRootBoneId = vectorRootCoreBoneId.begin(); iteratorRootBoneId != vectorRootCoreBoneId.end(); ++iteratorRootBoneId)
   {
     m_vectorBone[*iteratorRootBoneId]->calculateState();
@@ -69,7 +69,7 @@ void CalSkeleton::calculateState()
 void CalSkeleton::clearState()
 {
   // clear all bone states of the skeleton
-  std::vector<CalBone *>::iterator iteratorBone;
+  rde::vector<CalBone *>::iterator iteratorBone;
   for(iteratorBone = m_vectorBone.begin(); iteratorBone != m_vectorBone.end(); ++iteratorBone)
   {
     (*iteratorBone)->clearState();
@@ -100,7 +100,7 @@ bool CalSkeleton::create(CalCoreSkeleton *pCoreSkeleton)
   m_pCoreSkeleton = pCoreSkeleton;
 
   // clone the skeleton structure of the core skeleton
-  std::vector<CalCoreBone *>& vectorCoreBone = pCoreSkeleton->getVectorCoreBone();
+  rde::vector<CalCoreBone *>& vectorCoreBone = pCoreSkeleton->getVectorCoreBone();
 
   // get the number of bones
   int boneCount;
@@ -148,7 +148,7 @@ bool CalSkeleton::create(CalCoreSkeleton *pCoreSkeleton)
 void CalSkeleton::destroy()
 {
   // destroy all bones
-  std::vector<CalBone *>::iterator iteratorBone;
+  rde::vector<CalBone *>::iterator iteratorBone;
   for(iteratorBone = m_vectorBone.begin(); iteratorBone != m_vectorBone.end(); ++iteratorBone)
   {
     (*iteratorBone)->destroy();
@@ -201,7 +201,7 @@ CalCoreSkeleton *CalSkeleton::getCoreSkeleton()
   * @return A reference to the bone vector.
   *****************************************************************************/
 
-std::vector<CalBone *>& CalSkeleton::getVectorBone()
+rde::vector<CalBone *>& CalSkeleton::getVectorBone()
 {
   return m_vectorBone;
 }
@@ -216,7 +216,7 @@ std::vector<CalBone *>& CalSkeleton::getVectorBone()
 void CalSkeleton::lockState()
 {
   // lock all bone states of the skeleton
-  std::vector<CalBone *>::iterator iteratorBone;
+  rde::vector<CalBone *>::iterator iteratorBone;
   for(iteratorBone = m_vectorBone.begin(); iteratorBone != m_vectorBone.end(); ++iteratorBone)
   {
     (*iteratorBone)->lockState();
@@ -240,7 +240,7 @@ int CalSkeleton::getBonePoints(float *pPoints)
   int nrPoints;
   nrPoints = 0;
 
-  std::vector<CalBone *>::iterator iteratorBone;
+  rde::vector<CalBone *>::iterator iteratorBone;
   for(iteratorBone = m_vectorBone.begin(); iteratorBone != m_vectorBone.end(); ++iteratorBone)
   {
     const CalVector& translation = (*iteratorBone)->getTranslationAbsolute();
@@ -260,7 +260,7 @@ int CalSkeleton::getBonePointsStatic(float *pPoints)
   int nrPoints;
   nrPoints = 0;
 
-  std::vector<CalBone *>::iterator iteratorBone;
+  rde::vector<CalBone *>::iterator iteratorBone;
   for(iteratorBone = m_vectorBone.begin(); iteratorBone != m_vectorBone.end(); ++iteratorBone)
   {
     const CalVector& translation = (*iteratorBone)->getCoreBone()->getTranslationAbsolute();
@@ -280,7 +280,7 @@ int CalSkeleton::getBoneLines(float *pLines)
   int nrLines;
   nrLines = 0;
 
-  std::vector<CalBone *>::iterator iteratorBone;
+  rde::vector<CalBone *>::iterator iteratorBone;
   for(iteratorBone = m_vectorBone.begin(); iteratorBone != m_vectorBone.end(); ++iteratorBone)
   {
     int parentId;
@@ -314,7 +314,7 @@ int CalSkeleton::getBoneLinesStatic(float *pLines)
   int nrLines;
   nrLines = 0;
 
-  std::vector<CalBone *>::iterator iteratorBone;
+  rde::vector<CalBone *>::iterator iteratorBone;
   for(iteratorBone = m_vectorBone.begin(); iteratorBone != m_vectorBone.end(); ++iteratorBone)
   {
     int parentId;

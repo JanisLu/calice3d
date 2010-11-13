@@ -54,7 +54,7 @@ public:
   {
     CalVector position;
     CalVector normal;
-    std::vector<Influence> vectorInfluence;
+    rde::vector<Influence> vectorInfluence;
     int collapseId;
     int faceCollapseCount;
   } Vertex;
@@ -75,11 +75,11 @@ public:
 
 // member variables
 protected:
-  std::vector<Vertex> m_vectorVertex;
-  std::vector<std::vector<TextureCoordinate> > m_vectorvectorTextureCoordinate;
-  std::vector<PhysicalProperty> m_vectorPhysicalProperty;
-  std::vector<Face> m_vectorFace;
-  std::vector<Spring> m_vectorSpring;
+  rde::vector<Vertex> m_vectorVertex;
+  rde::vector<rde::vector<TextureCoordinate> > m_vectorvectorTextureCoordinate;
+  rde::vector<PhysicalProperty> m_vectorPhysicalProperty;
+  rde::vector<Face> m_vectorFace;
+  rde::vector<Spring> m_vectorSpring;
   int m_coreMaterialThreadId;
   int m_lodCount;
 
@@ -96,11 +96,11 @@ public:
   int getFaceCount();
   int getLodCount();
   int getSpringCount();
-  std::vector<Face>& getVectorFace();
-  std::vector<PhysicalProperty>& getVectorPhysicalProperty();
-  std::vector<Spring>& getVectorSpring();
-  std::vector<std::vector<TextureCoordinate> >& getVectorVectorTextureCoordinate();
-  std::vector<Vertex>& getVectorVertex();
+  rde::vector<Face>& getVectorFace();
+  rde::vector<PhysicalProperty>& getVectorPhysicalProperty();
+  rde::vector<Spring>& getVectorSpring();
+  rde::vector<rde::vector<TextureCoordinate> >& getVectorVectorTextureCoordinate();
+  rde::vector<Vertex>& getVectorVertex();
   int getVertexCount();
   bool reserve(int vertexCount, int textureCoordinateCount, int faceCount, int springCount);
   void setCoreMaterialThreadId(int coreMaterialThreadId);

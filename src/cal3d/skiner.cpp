@@ -64,7 +64,7 @@ int CalSkiner::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, int
 	int helperTexCoord[8] = {	VERTEX_TEX1, VERTEX_TEX2, VERTEX_TEX3, VERTEX_TEX4, 
 		VERTEX_TEX5, VERTEX_TEX6, VERTEX_TEX7, VERTEX_TEX8};
 
-	std::vector<std::vector<CalCoreSubmesh::TextureCoordinate> >& vectorvectorTextureCoordinate = pSubmesh->getCoreSubmesh()->getVectorVectorTextureCoordinate();
+	rde::vector<rde::vector<CalCoreSubmesh::TextureCoordinate> >& vectorvectorTextureCoordinate = pSubmesh->getCoreSubmesh()->getVectorVectorTextureCoordinate();
 	// check if the map id is valid
 	//if ( (iVertexFormat & VERTEX_TEX1 && vectorvectorTextureCoordinate.size() < 1) ||
 	//  (iVertexFormat & VERTEX_TEX2 && vectorvectorTextureCoordinate.size() < 2) ||
@@ -81,10 +81,10 @@ int CalSkiner::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, int
 
 
 	// get bone vector of the skeleton
-	std::vector<CalBone *>& vectorBone = m_pModel->getSkeleton()->getVectorBone();
+	rde::vector<CalBone *>& vectorBone = m_pModel->getSkeleton()->getVectorBone();
 
 	// get physical property vector of the core submesh
-	std::vector<CalCoreSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getCoreSubmesh()->getVectorPhysicalProperty();
+	rde::vector<CalCoreSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getCoreSubmesh()->getVectorPhysicalProperty();
 
 	// get the number of vertices
 	int vertexCount = pSubmesh->getVertexCount();
@@ -189,7 +189,7 @@ int CalSkiner::calculateVertices(CalSubmesh *pSubmesh, float *pVertexBuffer, int
 			*pVertexBuffer++ = nz*scale;
 		}
 
-		for (unsigned int numTexCoord = 0; numTexCoord < vectorvectorTextureCoordinate.size(); numTexCoord++)
+		for (int numTexCoord = 0; numTexCoord < vectorvectorTextureCoordinate.size(); numTexCoord++)
 		{
 			if (numTexCoord == 0 && iVertexFormat & helperTexCoord[numTexCoord])
 			{
@@ -259,24 +259,24 @@ void CalSkiner::destroy()
 void CalSkiner::update()
 {
 	// get the attached meshes vector
-	std::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
+	rde::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
 
 	// loop through all the attached meshes
-	std::vector<CalMesh *>::iterator iteratorMesh;
+	rde::vector<CalMesh *>::iterator iteratorMesh;
 	for(iteratorMesh = vectorMesh.begin(); iteratorMesh != vectorMesh.end(); ++iteratorMesh)
 	{
 		// get the submesh vector of the mesh
-		std::vector<CalSubmesh *>& vectorSubmesh = (*iteratorMesh)->getVectorSubmesh();
+		rde::vector<CalSubmesh *>& vectorSubmesh = (*iteratorMesh)->getVectorSubmesh();
 
 		// loop through all the submeshes of the mesh
-		std::vector<CalSubmesh *>::iterator iteratorSubmesh;
+		rde::vector<CalSubmesh *>::iterator iteratorSubmesh;
 		for(iteratorSubmesh = vectorSubmesh.begin(); iteratorSubmesh != vectorSubmesh.end(); ++iteratorSubmesh)
 		{
 			// check if the submesh handles vertex data internally
 			if((*iteratorSubmesh)->hasInternalData())
 			{
 				// calculate the transformed vertices and store them in the submesh
-				std::vector<CalSubmesh::Vertex>& vectorVertex = (*iteratorSubmesh)->getVectorVertex();
+				rde::vector<CalSubmesh::Vertex>& vectorVertex = (*iteratorSubmesh)->getVectorVertex();
 				calculateVertices(*iteratorSubmesh, (float *)&vectorVertex[0], VERTEX_XYZ | VERTEX_NORMAL);
 			}
 		}

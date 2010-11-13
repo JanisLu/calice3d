@@ -221,7 +221,7 @@ bool CalMixer::create(CalModel *pModel)
   coreAnimationCount = m_pModel->getCoreModel()->getCoreAnimationCount();
 
   m_vectorAnimation.reserve(coreAnimationCount);
-  m_vectorAnimation.insert(m_vectorAnimation.begin(), (std::vector<CalAnimation *>::size_type)coreAnimationCount, 0);
+  m_vectorAnimation.insert(m_vectorAnimation.begin(), (rde::vector<CalAnimation *>::size_type)coreAnimationCount, 0);
 
   // set the animation time/duration values to default
   m_animationTime = 0.0f;
@@ -239,7 +239,7 @@ bool CalMixer::create(CalModel *pModel)
 
 void CalMixer::destroy()
 {
-  unsigned int i = 0;
+  int i = 0;
   // destroy all active animation actions
   for (i = 0; i < m_vectorAnimationAction.size(); i++)
   {
@@ -346,7 +346,7 @@ void CalMixer::updateAnimation(float deltaTime)
   }
 
   // update all active animation actions of this model
-  std::vector<CalAnimationAction *>::iterator iteratorAnimationAction;
+  rde::vector<CalAnimationAction *>::iterator iteratorAnimationAction;
   iteratorAnimationAction = m_vectorAnimationAction.begin();
 
   while(iteratorAnimationAction != m_vectorAnimationAction.end())
@@ -368,7 +368,7 @@ void CalMixer::updateAnimation(float deltaTime)
   // todo: update all active animation poses of this model
 
   // update the weight of all active animation cycles of this model
-  std::vector<CalAnimationCycle *>::iterator iteratorAnimationCycle;
+  rde::vector<CalAnimationCycle *>::iterator iteratorAnimationCycle;
   iteratorAnimationCycle = m_vectorAnimationCycle.begin();
 
   float accumulatedWeight, accumulatedDuration;
@@ -426,10 +426,10 @@ void CalMixer::updateSkeleton()
   pSkeleton->clearState();
 
   // get the bone vector of the skeleton
-  std::vector<CalBone *>& vectorBone = pSkeleton->getVectorBone();
+  rde::vector<CalBone *>& vectorBone = pSkeleton->getVectorBone();
 
   // loop through all animation actions
-  std::vector<CalAnimationAction *>::iterator iteratorAnimationAction;
+  rde::vector<CalAnimationAction *>::iterator iteratorAnimationAction;
   for(iteratorAnimationAction = m_vectorAnimationAction.begin(); iteratorAnimationAction != m_vectorAnimationAction.end(); ++iteratorAnimationAction)
   {
     // get the core animation instance
@@ -437,10 +437,10 @@ void CalMixer::updateSkeleton()
     pCoreAnimation = (*iteratorAnimationAction)->getCoreAnimation();
 
     // get the list of core tracks of above core animation
-    std::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
+    rde::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
 
     // loop through all core tracks of the core animation
-    std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+    rde::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
     for(iteratorCoreTrack = vectorCoreTrack.begin(); iteratorCoreTrack != vectorCoreTrack.end(); ++iteratorCoreTrack)
     {
       // get the appropriate bone of the track
@@ -461,7 +461,7 @@ void CalMixer::updateSkeleton()
   pSkeleton->lockState();
 
   // loop through all animation cycles
-  std::vector<CalAnimationCycle *>::iterator iteratorAnimationCycle;
+  rde::vector<CalAnimationCycle *>::iterator iteratorAnimationCycle;
   for(iteratorAnimationCycle = m_vectorAnimationCycle.begin(); iteratorAnimationCycle != m_vectorAnimationCycle.end(); ++iteratorAnimationCycle)
   {
     // get the core animation instance
@@ -487,10 +487,10 @@ void CalMixer::updateSkeleton()
     }
 
     // get the list of core tracks of above core animation
-    std::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
+    rde::vector<CalCoreTrack *>& vectorCoreTrack = pCoreAnimation->getCoreTracks();
 
     // loop through all core tracks of the core animation
-    std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+    rde::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
     for(iteratorCoreTrack = vectorCoreTrack.begin(); iteratorCoreTrack != vectorCoreTrack.end(); ++iteratorCoreTrack)
     {
       // get the appropriate bone of the track

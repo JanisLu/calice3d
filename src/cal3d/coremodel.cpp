@@ -135,27 +135,6 @@ bool CalCoreModel::create(const char* strName)
   return true;
 }
 
- /*****************************************************************************/
-/** Creates a core material thread.
-  *
-  * This function creates a new core material thread with the given ID.
-  *
-  * @param coreMaterialThreadId The ID of the core material thread that should
-  *                             be created.
-  *
-  * @return One of the following values:
-  *         \li \b true if successful
-  *         \li \b false if an error happend
-  *****************************************************************************/
-
-bool CalCoreModel::createCoreMaterialThread(int coreMaterialThreadId)
-{
-  // insert an empty core material thread with a given id
-  std::map<int, int> mapCoreMaterialThreadId;
-  m_mapmapCoreMaterialThread.insert(std::make_pair(coreMaterialThreadId, mapCoreMaterialThreadId));
-
-  return true;
-}
 
  /*****************************************************************************/
 /** Destroys the core model instance.
@@ -167,7 +146,7 @@ bool CalCoreModel::createCoreMaterialThread(int coreMaterialThreadId)
 void CalCoreModel::destroy()
 {
   // destroy all core materials
-  std::vector<CalCoreMaterial *>::iterator iteratorCoreMaterial;
+  rde::vector<CalCoreMaterial *>::iterator iteratorCoreMaterial;
   for(iteratorCoreMaterial = m_vectorCoreMaterial.begin(); iteratorCoreMaterial != m_vectorCoreMaterial.end(); ++iteratorCoreMaterial)
   {
     (*iteratorCoreMaterial)->destroy();
@@ -176,7 +155,7 @@ void CalCoreModel::destroy()
   m_vectorCoreMaterial.clear();
 
   // destroy all core meshes
-  std::vector<CalCoreMesh *>::iterator iteratorCoreMesh;
+  rde::vector<CalCoreMesh *>::iterator iteratorCoreMesh;
   for(iteratorCoreMesh = m_vectorCoreMesh.begin(); iteratorCoreMesh != m_vectorCoreMesh.end(); ++iteratorCoreMesh)
   {
     (*iteratorCoreMesh)->destroy();
@@ -185,7 +164,7 @@ void CalCoreModel::destroy()
   m_vectorCoreMesh.clear();
 
   // destroy all core animations
-  std::vector<CalCoreAnimation *>::iterator iteratorCoreAnimation;
+  rde::vector<CalCoreAnimation *>::iterator iteratorCoreAnimation;
   for(iteratorCoreAnimation = m_vectorCoreAnimation.begin(); iteratorCoreAnimation != m_vectorCoreAnimation.end(); ++iteratorCoreAnimation)
   {
     (*iteratorCoreAnimation)->destroy();
@@ -275,46 +254,6 @@ CalCoreMaterial *CalCoreModel::getCoreMaterial(int coreMaterialId)
 int CalCoreModel::getCoreMaterialCount()
 {
   return m_vectorCoreMaterial.size();
-}
-
- /*****************************************************************************/
-/** Returns a specified core material ID.
-  *
-  * This function returns the core material ID for a specified core material
-  * thread / core material set pair.
-  *
-  * @param coreMaterialThreadId The ID of the core material thread.
-  * @param coreMaterialSetId The ID of the core material set.
-  *
-  * @return One of the following values:
-  *         \li the \b ID of the core material
-  *         \li \b -1 if an error happend
-  *****************************************************************************/
-
-int CalCoreModel::getCoreMaterialId(int coreMaterialThreadId, int coreMaterialSetId)
-{
-  // find the core material thread
-  std::map<int, std::map<int, int> >::iterator iteratorCoreMaterialThread;
-  iteratorCoreMaterialThread = m_mapmapCoreMaterialThread.find(coreMaterialThreadId);
-  if(iteratorCoreMaterialThread == m_mapmapCoreMaterialThread.end())
-  {
-    CalError::setLastError(CalError::INVALID_HANDLE, __FILE__, __LINE__);
-    return -1;
-  }
-
-  // get the core material thread
-  std::map<int, int>& coreMaterialThread = (*iteratorCoreMaterialThread).second;
-
-  // find the material id for the given set
-  std::map<int, int>::iterator iteratorSet;
-  iteratorSet = coreMaterialThread.find(coreMaterialSetId);
-  if(iteratorSet == coreMaterialThread.end())
-  {
-    CalError::setLastError(CalError::INVALID_HANDLE, __FILE__, __LINE__);
-    return -1;
-  }
-
-  return (*iteratorSet).second;
 }
 
  /*****************************************************************************/
@@ -653,44 +592,6 @@ bool CalCoreModel::saveCoreSkeleton(const char* strFilename)
   {
     return false;
   }
-
-  return true;
-}
-
- /*****************************************************************************/
-/** Sets a core material ID.
-  *
-  * This function sets a core material ID for a core material thread / core
-  * material set pair.
-  *
-  * @param coreMaterialThreadId The ID of the core material thread.
-  * @param coreMaterialSetId The ID of the core maetrial set.
-  * @param coreMaterialId The ID of the core maetrial.
-  *
-  * @return One of the following values:
-  *         \li \b true if successful
-  *         \li \b false if an error happend
-  *****************************************************************************/
-
-bool CalCoreModel::setCoreMaterialId(int coreMaterialThreadId, int coreMaterialSetId, int coreMaterialId)
-{
-  // find the core material thread
-  std::map<int, std::map<int, int> >::iterator iteratorCoreMaterialThread;
-  iteratorCoreMaterialThread = m_mapmapCoreMaterialThread.find(coreMaterialThreadId);
-  if(iteratorCoreMaterialThread == m_mapmapCoreMaterialThread.end())
-  {
-    CalError::setLastError(CalError::INVALID_HANDLE, __FILE__, __LINE__);
-    return false;
-  }
-
-  // get the core material thread
-  std::map<int, int>& coreMaterialThread = (*iteratorCoreMaterialThread).second;
-
-  // remove a possible entry in the core material thread
-  coreMaterialThread.erase(coreMaterialSetId);
-
-  // set the given set id in the core material thread to the given core material id
-  coreMaterialThread.insert(std::make_pair(coreMaterialSetId, coreMaterialId));
 
   return true;
 }

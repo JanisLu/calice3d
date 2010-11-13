@@ -37,8 +37,8 @@ class CAL3D_API CalCoreSkeleton
   friend class CalLoader;
 // member variables
 protected:
-  std::vector<CalCoreBone *> m_vectorCoreBone;
-  std::vector<int> m_vectorRootCoreBoneId;
+  rde::vector<CalCoreBone *> m_vectorCoreBone;
+  rde::vector<int> m_vectorRootCoreBoneId;
 
 // constructors/destructor
 public:
@@ -53,8 +53,8 @@ public:
   void destroy();
   CalCoreBone *getCoreBone(int coreBoneId);
   int getCoreBoneId(const char* strName);
-  std::vector<int>& getVectorRootCoreBoneId();
-  std::vector<CalCoreBone *>& getVectorCoreBone();
+  rde::vector<int>& getVectorRootCoreBoneId();
+  rde::vector<CalCoreBone *>& getVectorCoreBone();
 };
 
 #endif
