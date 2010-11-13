@@ -39,7 +39,7 @@ class CAL3D_API CalCoreTrack
 // member variables
 protected:
   int m_coreBoneId;
-  std::map<float, CalCoreKeyframe *> m_mapCoreKeyframe;
+  rde::sorted_vector<float, CalCoreKeyframe *> m_mapCoreKeyframe;
 
 // constructors/destructor
 public:
@@ -52,7 +52,7 @@ public:
   bool create();
   void destroy();
   int getCoreBoneId();
-  std::map<float, CalCoreKeyframe *>& getMapCoreKeyframe();
+  rde::sorted_vector<float, CalCoreKeyframe *>& getMapCoreKeyframe();
   bool getState(float time, CalVector& translation, CalQuaternion& rotation);
   bool setCoreBoneId(int coreBoneId);
 };

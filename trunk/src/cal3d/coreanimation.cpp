@@ -80,7 +80,7 @@ bool CalCoreAnimation::create()
 void CalCoreAnimation::destroy()
 {
   // destroy all core tracks
-  std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+  rde::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
   for(iteratorCoreTrack = m_arrayCoreTrack.begin(); iteratorCoreTrack != m_arrayCoreTrack.end(); ++iteratorCoreTrack)
   {
     CalCoreTrack *pCoreTrack = *iteratorCoreTrack;
@@ -107,7 +107,7 @@ void CalCoreAnimation::destroy()
 CalCoreTrack *CalCoreAnimation::getCoreTrack(int coreBoneId)
 {
   // loop through all core bones
-  std::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
+  rde::vector<CalCoreTrack *>::iterator iteratorCoreTrack;
   for(iteratorCoreTrack = m_arrayCoreTrack.begin(); iteratorCoreTrack != m_arrayCoreTrack.end(); ++iteratorCoreTrack)
   {
     // get the core bone
@@ -144,7 +144,7 @@ float CalCoreAnimation::getDuration()
   * @return A reference to the core track vector.
   *****************************************************************************/
 
-std::vector<CalCoreTrack *>& CalCoreAnimation::getCoreTracks()
+rde::vector<CalCoreTrack *>& CalCoreAnimation::getCoreTracks()
 {
   return m_arrayCoreTrack;
 }

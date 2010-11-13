@@ -67,7 +67,7 @@ bool CalMesh::create(CalCoreMesh *pCoreMesh)
   m_pCoreMesh = pCoreMesh;
 
   // clone the mesh structure of the core mesh
-  std::vector<CalCoreSubmesh *>& vectorCoreSubmesh = pCoreMesh->getVectorCoreSubmesh();
+  rde::vector<CalCoreSubmesh *>& vectorCoreSubmesh = pCoreMesh->getVectorCoreSubmesh();
 
   // get the number of submeshes
   int submeshCount;
@@ -112,7 +112,7 @@ bool CalMesh::create(CalCoreMesh *pCoreMesh)
 void CalMesh::destroy()
 {
   // destroy all submeshes
-  std::vector<CalSubmesh *>::iterator iteratorSubmesh;
+  rde::vector<CalSubmesh *>::iterator iteratorSubmesh;
   for(iteratorSubmesh = m_vectorSubmesh.begin(); iteratorSubmesh != m_vectorSubmesh.end(); ++iteratorSubmesh)
   {
     (*iteratorSubmesh)->destroy();
@@ -183,7 +183,7 @@ int CalMesh::getSubmeshCount()
   * @return A reference to the submesh vector.
   *****************************************************************************/
 
-std::vector<CalSubmesh *>& CalMesh::getVectorSubmesh()
+rde::vector<CalSubmesh *>& CalMesh::getVectorSubmesh()
 {
   return m_vectorSubmesh;
 }
@@ -204,33 +204,6 @@ void CalMesh::setLodLevel(float lodLevel)
   {
     // set the lod level in the submesh
     m_vectorSubmesh[submeshId]->setLodLevel(lodLevel);
-  }
-}
-
- /*****************************************************************************/
-/** Sets the material set.
-  *
-  * This function sets the material set of the mesh instance.
-  *
-  * @param setId The ID of the material set.
-  *****************************************************************************/
-
-void CalMesh::setMaterialSet(int setId)
-{
-  // change material of every submesh
-  int submeshId;
-  for(submeshId = 0; submeshId < (int)m_vectorSubmesh.size(); submeshId++)
-  {
-    // get the core material thread id of the submesh
-    int coreMaterialThreadId;
-    coreMaterialThreadId = m_vectorSubmesh[submeshId]->getCoreSubmesh()->getCoreMaterialThreadId();
-
-    // get the core material id for the given set id in the material thread
-    int coreMaterialId;
-    coreMaterialId = m_pModel->getCoreModel()->getCoreMaterialId(coreMaterialThreadId, setId);
-
-    // set the new core material id in the submesh
-    m_vectorSubmesh[submeshId]->setCoreMaterialId(coreMaterialId);
   }
 }
 

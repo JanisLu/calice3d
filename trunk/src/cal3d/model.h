@@ -48,7 +48,7 @@ protected:
   CalSpringSystem *m_pSpringSystem;
   CalRenderer *m_pRenderer;
   Cal::UserData m_userData;
-  std::vector<CalMesh *> m_vectorMesh;
+  rde::vector<CalMesh *> m_vectorMesh;
 
 // constructors/destructor
 public: 
@@ -69,9 +69,8 @@ public:
   CalSkeleton *getSkeleton();
   CalSpringSystem *getSpringSystem();
   Cal::UserData getUserData();
-  std::vector<CalMesh *>& getVectorMesh();
+  rde::vector<CalMesh *>& getVectorMesh();
   void setLodLevel(float lodLevel);
-  void setMaterialSet(int setId);
   void setUserData(Cal::UserData userData);
   void update(float deltaTime);
 };

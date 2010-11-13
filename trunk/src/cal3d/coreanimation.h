@@ -38,7 +38,7 @@ class CAL3D_API CalCoreAnimation
 // member variables
 protected:
   float m_duration;
-  std::vector<CalCoreTrack *> m_arrayCoreTrack;
+  rde::vector<CalCoreTrack *> m_arrayCoreTrack;
 
 // constructors/destructor
 public:
@@ -52,7 +52,7 @@ public:
   void destroy();
   CalCoreTrack *getCoreTrack(int coreBoneId);
   float getDuration();
-  std::vector<CalCoreTrack *>& getCoreTracks();
+  rde::vector<CalCoreTrack *>& getCoreTracks();
   void setDuration(float duration);
 };
 

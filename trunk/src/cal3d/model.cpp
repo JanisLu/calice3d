@@ -361,7 +361,7 @@ bool CalModel::detachMesh(int coreMeshId)
   pCoreMesh = m_pCoreModel->getCoreMesh(coreMeshId);
 
   // find the mesh for the given id
-  std::vector<CalMesh *>::iterator iteratorMesh;
+  rde::vector<CalMesh *>::iterator iteratorMesh;
   for(iteratorMesh = m_vectorMesh.begin(); iteratorMesh != m_vectorMesh.end(); ++iteratorMesh)
   {
     // get the mesh
@@ -537,7 +537,7 @@ Cal::UserData CalModel::getUserData()
   * @return A reference to the mesh vector.
   *****************************************************************************/
 
-std::vector<CalMesh *>& CalModel::getVectorMesh()
+rde::vector<CalMesh *>& CalModel::getVectorMesh()
 {
   return m_vectorMesh;
 }
@@ -553,30 +553,11 @@ std::vector<CalMesh *>& CalModel::getVectorMesh()
 void CalModel::setLodLevel(float lodLevel)
 {
   // set the lod level in all meshes
-  std::vector<CalMesh *>::iterator iteratorMesh;
+  rde::vector<CalMesh *>::iterator iteratorMesh;
   for(iteratorMesh = m_vectorMesh.begin(); iteratorMesh != m_vectorMesh.end(); ++iteratorMesh)
   {
     // set the lod level in the mesh
     (*iteratorMesh)->setLodLevel(lodLevel);
-  }
-}
-
- /*****************************************************************************/
-/** Sets the material set.
-  *
-  * This function sets the material set of all attached meshes.
-  *
-  * @param setId The ID of the material set.
-  *****************************************************************************/
-
-void CalModel::setMaterialSet(int setId)
-{
-  // set the lod level in all meshes
-  std::vector<CalMesh *>::iterator iteratorMesh;
-  for(iteratorMesh = m_vectorMesh.begin(); iteratorMesh != m_vectorMesh.end(); ++iteratorMesh)
-  {
-    // set the material set in the mesh
-    (*iteratorMesh)->setMaterialSet(setId);
   }
 }
 

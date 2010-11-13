@@ -39,7 +39,7 @@ class CAL3D_API CalMesh
 protected:
   CalModel *m_pModel;
   CalCoreMesh *m_pCoreMesh;
-  std::vector<CalSubmesh *> m_vectorSubmesh;
+  rde::vector<CalSubmesh *> m_vectorSubmesh;
 
 // constructors/destructor
 public:
@@ -53,9 +53,8 @@ public:
   CalCoreMesh *getCoreMesh();
   CalSubmesh *getSubmesh(int id);
   int getSubmeshCount();
-  std::vector<CalSubmesh *>& getVectorSubmesh();
+  rde::vector<CalSubmesh *>& getVectorSubmesh();
   void setLodLevel(float lodLevel);
-  void setMaterialSet(int setId);
   void setModel(CalModel *pModel);
 };
 

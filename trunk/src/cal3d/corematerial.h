@@ -51,7 +51,7 @@ protected:
   Color m_diffuseColor;
   Color m_specularColor;
   float m_shininess;
-  std::vector<Map> m_vectorMap;
+  rde::vector<Map> m_vectorMap;
   Cal::UserData m_userData;
 
 // constructors/destructor
@@ -71,7 +71,7 @@ public:
   float getShininess();
   Color& getSpecularColor();
   Cal::UserData getUserData();
-  std::vector<Map>& getVectorMap();
+  rde::vector<Map>& getVectorMap();
   bool reserve(int mapCount);
   void setAmbientColor(const Color& ambientColor);
   void setDiffuseColor(const Color& diffuseColor);

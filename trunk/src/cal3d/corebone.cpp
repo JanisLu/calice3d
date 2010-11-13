@@ -92,7 +92,7 @@ void CalCoreBone::calculateState()
   }
 
   // calculate all child bones
-  std::vector<int>::iterator iteratorChildId;
+  rde::vector<int>::iterator iteratorChildId;
   for(iteratorChildId = m_arrayChildId.begin(); iteratorChildId != m_arrayChildId.end(); ++iteratorChildId)
   {
     m_pCoreSkeleton->getCoreBone(*iteratorChildId)->calculateState();
@@ -144,7 +144,7 @@ void CalCoreBone::destroy()
   * @return A reference to the child ID list.
   *****************************************************************************/
 
-std::vector<int>& CalCoreBone::getChildIds()
+rde::vector<int>& CalCoreBone::getChildIds()
 {
   return m_arrayChildId;
 }

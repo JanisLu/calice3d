@@ -72,8 +72,9 @@
 // STL includes
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include <map>
+#include <rdestl/vector.h>
+#include <rdestl/sorted_vector.h>
+#include <rdestl/pair.h>
 
 //****************************************************************************//
 // Class declaration                                                          //

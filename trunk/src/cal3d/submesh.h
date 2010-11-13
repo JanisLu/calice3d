@@ -60,9 +60,9 @@ public:
 // member variables
 protected:
   CalCoreSubmesh *m_pCoreSubmesh;
-  std::vector<Vertex> m_vectorVertex;
-  std::vector<Face> m_vectorFace;
-  std::vector<PhysicalProperty> m_vectorPhysicalProperty;
+  rde::vector<Vertex> m_vectorVertex;
+  rde::vector<Face> m_vectorFace;
+  rde::vector<PhysicalProperty> m_vectorPhysicalProperty;
   int m_vertexCount;
   int m_faceCount;
   int m_coreMaterialId;
@@ -81,8 +81,8 @@ public:
   int getCoreMaterialId();
   int getFaceCount();
   int getFaces(int *pFaceBuffer);
-  std::vector<PhysicalProperty>& getVectorPhysicalProperty();
-  std::vector<Vertex>& getVectorVertex();
+  rde::vector<PhysicalProperty>& getVectorPhysicalProperty();
+  rde::vector<Vertex>& getVectorVertex();
   int getVertexCount();
   bool hasInternalData();
   void setCoreMaterialId(int coreMaterialId);

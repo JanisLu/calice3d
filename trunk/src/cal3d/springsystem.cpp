@@ -56,13 +56,13 @@ CalSpringSystem::~CalSpringSystem()
 void CalSpringSystem::calculateForces(CalSubmesh *pSubmesh, float deltaTime)
 {
   // get the vertex vector of the submesh
-	std::vector<CalSubmesh::Vertex>& vectorVertex = pSubmesh->getVectorVertex();
+	rde::vector<CalSubmesh::Vertex>& vectorVertex = pSubmesh->getVectorVertex();
 
   // get the vertex vector of the submesh
-  std::vector<CalSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getVectorPhysicalProperty();
+  rde::vector<CalSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getVectorPhysicalProperty();
 
   // get the physical property vector of the core submesh
-  std::vector<CalCoreSubmesh::PhysicalProperty>& vectorCorePhysicalProperty = pSubmesh->getCoreSubmesh()->getVectorPhysicalProperty();
+  rde::vector<CalCoreSubmesh::PhysicalProperty>& vectorCorePhysicalProperty = pSubmesh->getCoreSubmesh()->getVectorPhysicalProperty();
 
   // loop through all the vertices
   int vertexId;
@@ -97,13 +97,13 @@ void CalSpringSystem::calculateForces(CalSubmesh *pSubmesh, float deltaTime)
 void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
 {
   // get the vertex vector of the submesh
-  std::vector<CalSubmesh::Vertex>& vectorVertex = pSubmesh->getVectorVertex();
+  rde::vector<CalSubmesh::Vertex>& vectorVertex = pSubmesh->getVectorVertex();
 
   // get the physical property vector of the submesh
-  std::vector<CalSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getVectorPhysicalProperty();
+  rde::vector<CalSubmesh::PhysicalProperty>& vectorPhysicalProperty = pSubmesh->getVectorPhysicalProperty();
 
   // get the physical property vector of the core submesh
-  std::vector<CalCoreSubmesh::PhysicalProperty>& vectorCorePhysicalProperty = pSubmesh->getCoreSubmesh()->getVectorPhysicalProperty();
+  rde::vector<CalCoreSubmesh::PhysicalProperty>& vectorCorePhysicalProperty = pSubmesh->getCoreSubmesh()->getVectorPhysicalProperty();
 
   // loop through all the vertices
   int vertexId;
@@ -144,7 +144,7 @@ void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
   }
 
   // get the spring vector of the core submesh
-  std::vector<CalCoreSubmesh::Spring>& vectorSpring = pSubmesh->getCoreSubmesh()->getVectorSpring();
+  rde::vector<CalCoreSubmesh::Spring>& vectorSpring = pSubmesh->getCoreSubmesh()->getVectorSpring();
 
   // iterate a few times to relax the constraints
   int iterationCount;
@@ -152,7 +152,7 @@ void CalSpringSystem::calculateVertices(CalSubmesh *pSubmesh, float deltaTime)
   for(iterationCount = 0; iterationCount < ITERATION_COUNT; iterationCount++)
   {
     // loop through all the springs
-    std::vector<CalCoreSubmesh::Spring>::iterator iteratorSpring;
+    rde::vector<CalCoreSubmesh::Spring>::iterator iteratorSpring;
     for(iteratorSpring = vectorSpring.begin(); iteratorSpring != vectorSpring.end(); ++iteratorSpring)
     {
       // get the spring
@@ -291,17 +291,17 @@ void CalSpringSystem::destroy()
 void CalSpringSystem::update(float deltaTime)
 {
   // get the attached meshes vector
-  std::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
+  rde::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
 
   // loop through all the attached meshes
-  std::vector<CalMesh *>::iterator iteratorMesh;
+  rde::vector<CalMesh *>::iterator iteratorMesh;
   for(iteratorMesh = vectorMesh.begin(); iteratorMesh != vectorMesh.end(); ++iteratorMesh)
   {
     // get the ssubmesh vector of the mesh
-    std::vector<CalSubmesh *>& vectorSubmesh = (*iteratorMesh)->getVectorSubmesh();
+    rde::vector<CalSubmesh *>& vectorSubmesh = (*iteratorMesh)->getVectorSubmesh();
 
     // loop through all the submeshes of the mesh
-    std::vector<CalSubmesh *>::iterator iteratorSubmesh;
+    rde::vector<CalSubmesh *>::iterator iteratorSubmesh;
     for(iteratorSubmesh = vectorSubmesh.begin(); iteratorSubmesh != vectorSubmesh.end(); ++iteratorSubmesh)
     {
       // check if the submesh contains a spring system

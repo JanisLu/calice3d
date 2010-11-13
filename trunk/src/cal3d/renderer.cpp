@@ -56,7 +56,7 @@ CalRenderer::~CalRenderer()
 bool CalRenderer::beginRendering()
 {
   // get the attached meshes vector
-  std::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
+  rde::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
 
   // check if there are any meshes attached to the model
   if(vectorMesh.size() == 0)
@@ -264,7 +264,7 @@ Cal::UserData CalRenderer::getMapUserData(int mapId)
   if(pCoreMaterial == 0) return 0;
 
   // get the map vector
-  std::vector<CalCoreMaterial::Map>& vectorMap = pCoreMaterial->getVectorMap();
+  rde::vector<CalCoreMaterial::Map>& vectorMap = pCoreMaterial->getVectorMap();
 
   // check if the map id is valid
   if((mapId < 0) || (mapId >= (int)vectorMap.size()))
@@ -288,7 +288,7 @@ Cal::UserData CalRenderer::getMapUserData(int mapId)
 int CalRenderer::getMeshCount()
 {
   // get the attached meshes vector
-  std::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
+  rde::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
 
   return vectorMesh.size();
 }
@@ -363,7 +363,7 @@ void CalRenderer::getSpecularColor(unsigned char *pColorBuffer)
 int CalRenderer::getSubmeshCount(int meshId)
 {
   // get the attached meshes vector
-  std::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
+  rde::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
 
   // check if the mesh id is valid
   if((meshId < 0) || (meshId >= (int)vectorMesh.size()))
@@ -423,7 +423,7 @@ int CalRenderer::getVertices(void *pVertexBuffer, int iVertexFormat)
 bool CalRenderer::selectMeshSubmesh(int meshId, int submeshId)
 {
   // get the attached meshes vector
-  std::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
+  rde::vector<CalMesh *>& vectorMesh = m_pModel->getVectorMesh();
 
   // check if the mesh id is valid
   if((meshId < 0) || (meshId >= (int)vectorMesh.size()))

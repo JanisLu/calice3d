@@ -136,7 +136,7 @@ int CalCoreSubmesh::getSpringCount()
   * @return A reference to the face vector.
   *****************************************************************************/
 
-std::vector<CalCoreSubmesh::Face>& CalCoreSubmesh::getVectorFace()
+rde::vector<CalCoreSubmesh::Face>& CalCoreSubmesh::getVectorFace()
 {
   return m_vectorFace;
 }
@@ -150,7 +150,7 @@ std::vector<CalCoreSubmesh::Face>& CalCoreSubmesh::getVectorFace()
   * @return A reference to the physical property vector.
   *****************************************************************************/
 
-std::vector<CalCoreSubmesh::PhysicalProperty>& CalCoreSubmesh::getVectorPhysicalProperty()
+rde::vector<CalCoreSubmesh::PhysicalProperty>& CalCoreSubmesh::getVectorPhysicalProperty()
 {
   return m_vectorPhysicalProperty;
 }
@@ -164,7 +164,7 @@ std::vector<CalCoreSubmesh::PhysicalProperty>& CalCoreSubmesh::getVectorPhysical
   * @return A reference to the spring vector.
   *****************************************************************************/
 
-std::vector<CalCoreSubmesh::Spring>& CalCoreSubmesh::getVectorSpring()
+rde::vector<CalCoreSubmesh::Spring>& CalCoreSubmesh::getVectorSpring()
 {
   return m_vectorSpring;
 }
@@ -179,7 +179,7 @@ std::vector<CalCoreSubmesh::Spring>& CalCoreSubmesh::getVectorSpring()
   * @return A reference to the texture coordinate vector-vector.
   *****************************************************************************/
 
-std::vector<std::vector<CalCoreSubmesh::TextureCoordinate> > & CalCoreSubmesh::getVectorVectorTextureCoordinate()
+rde::vector<rde::vector<CalCoreSubmesh::TextureCoordinate> > & CalCoreSubmesh::getVectorVectorTextureCoordinate()
 {
   return m_vectorvectorTextureCoordinate;
 }
@@ -193,7 +193,7 @@ std::vector<std::vector<CalCoreSubmesh::TextureCoordinate> > & CalCoreSubmesh::g
   * @return A reference to the vertex vector.
   *****************************************************************************/
 
-std::vector<CalCoreSubmesh::Vertex>& CalCoreSubmesh::getVectorVertex()
+rde::vector<CalCoreSubmesh::Vertex>& CalCoreSubmesh::getVectorVertex()
 {
   return m_vectorVertex;
 }

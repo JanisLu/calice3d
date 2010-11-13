@@ -39,9 +39,9 @@ class CAL3D_API CalMixer
 // member variables
 public:
   CalModel *m_pModel;
-  std::vector<CalAnimation *> m_vectorAnimation;
-  std::vector<CalAnimationAction *> m_vectorAnimationAction;
-  std::vector<CalAnimationCycle *> m_vectorAnimationCycle;
+  rde::vector<CalAnimation *> m_vectorAnimation;
+  rde::vector<CalAnimationAction *> m_vectorAnimationAction;
+  rde::vector<CalAnimationCycle *> m_vectorAnimationCycle;
   float m_animationTime;
   float m_animationDuration;
 

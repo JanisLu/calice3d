@@ -77,7 +77,7 @@ int CalCoreSkeleton::addCoreBone(CalCoreBone *pCoreBone)
 void CalCoreSkeleton::calculateState()
 {
   // calculate all bone states of the skeleton
-  std::vector<int>::iterator iteratorRootCoreBoneId;
+  rde::vector<int>::iterator iteratorRootCoreBoneId;
   for(iteratorRootCoreBoneId = m_vectorRootCoreBoneId.begin(); iteratorRootCoreBoneId != m_vectorRootCoreBoneId.end(); ++iteratorRootCoreBoneId)
   {
     m_vectorCoreBone[*iteratorRootCoreBoneId]->calculateState();
@@ -109,7 +109,7 @@ bool CalCoreSkeleton::create()
 void CalCoreSkeleton::destroy()
 {
   // destroy all core animations
-  std::vector<CalCoreBone *>::iterator iteratorCoreBone;
+  rde::vector<CalCoreBone *>::iterator iteratorCoreBone;
   for(iteratorCoreBone = m_vectorCoreBone.begin(); iteratorCoreBone != m_vectorCoreBone.end(); ++iteratorCoreBone)
   {
     (*iteratorCoreBone)->destroy();
@@ -178,7 +178,7 @@ int CalCoreSkeleton::getCoreBoneId(const char* strName)
   * @return A reference to the root core bone id vector.
   *****************************************************************************/
 
-std::vector<int>& CalCoreSkeleton::getVectorRootCoreBoneId()
+rde::vector<int>& CalCoreSkeleton::getVectorRootCoreBoneId()
 {
   return m_vectorRootCoreBoneId;
 }
@@ -192,7 +192,7 @@ std::vector<int>& CalCoreSkeleton::getVectorRootCoreBoneId()
   * @return A reference to the core bone vector.
   *****************************************************************************/
 
-std::vector<CalCoreBone *>& CalCoreSkeleton::getVectorCoreBone()
+rde::vector<CalCoreBone *>& CalCoreSkeleton::getVectorCoreBone()
 {
   return m_vectorCoreBone;
 }

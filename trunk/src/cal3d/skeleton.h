@@ -37,7 +37,7 @@ class CAL3D_API CalSkeleton
 // member variables
 protected:
   CalCoreSkeleton *m_pCoreSkeleton;
-  std::vector<CalBone *> m_vectorBone;
+  rde::vector<CalBone *> m_vectorBone;
 
 // constructors/destructor
 public:
@@ -52,7 +52,7 @@ public:
   void destroy();
   CalBone *getBone(int boneId);
   CalCoreSkeleton *getCoreSkeleton();
-  std::vector<CalBone *>& getVectorBone();
+  rde::vector<CalBone *>& getVectorBone();
   void lockState();
 
 // DEBUG-CODE

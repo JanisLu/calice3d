@@ -79,7 +79,7 @@ bool CalSubmesh::create(CalCoreSubmesh *pCoreSubmesh)
     m_vectorPhysicalProperty.resize(m_pCoreSubmesh->getVertexCount());
 
     // get the vertex vector of the core submesh
-    std::vector<CalCoreSubmesh::Vertex>& vectorVertex = m_pCoreSubmesh->getVectorVertex();
+    rde::vector<CalCoreSubmesh::Vertex>& vectorVertex = m_pCoreSubmesh->getVectorVertex();
 
     // copy the data from the core submesh as default values
     int vertexId;
@@ -190,7 +190,7 @@ int CalSubmesh::getFaces(int *pFaceBuffer)
   * @return A reference to the physical property vector.
   *****************************************************************************/
 
-std::vector<CalSubmesh::PhysicalProperty>& CalSubmesh::getVectorPhysicalProperty()
+rde::vector<CalSubmesh::PhysicalProperty>& CalSubmesh::getVectorPhysicalProperty()
 {
   return m_vectorPhysicalProperty;
 }
@@ -204,7 +204,7 @@ std::vector<CalSubmesh::PhysicalProperty>& CalSubmesh::getVectorPhysicalProperty
   * @return A reference to the vertex vector.
   *****************************************************************************/
 
-std::vector<CalSubmesh::Vertex>& CalSubmesh::getVectorVertex()
+rde::vector<CalSubmesh::Vertex>& CalSubmesh::getVectorVertex()
 {
   return m_vectorVertex;
 }
@@ -276,10 +276,10 @@ void CalSubmesh::setLodLevel(float lodLevel)
   m_vertexCount = m_pCoreSubmesh->getVertexCount() - lodCount;
 
   // get face vector of the core submesh
-  std::vector<CalCoreSubmesh::Face>& vectorFace = m_pCoreSubmesh->getVectorFace();
+  rde::vector<CalCoreSubmesh::Face>& vectorFace = m_pCoreSubmesh->getVectorFace();
 
   // get face vector of the core submesh
-  std::vector<CalCoreSubmesh::Vertex>& vectorVertex = m_pCoreSubmesh->getVectorVertex();
+  rde::vector<CalCoreSubmesh::Vertex>& vectorVertex = m_pCoreSubmesh->getVectorVertex();
 
   // calculate the new number of faces
   m_faceCount = vectorFace.size();
